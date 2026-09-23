@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Gestão QDC - O.S. e Análises</title>
 
@@ -11,76 +11,140 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:#eef2f6;
+    background:#eef3f7;
     color:#17212b;
 }
 
-header{
-    background:#0b3954;
-    color:white;
-    padding:15px;
-    position:sticky;
-    top:0;
-    z-index:10;
-    box-shadow:0 2px 8px #0003;
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.oculto{
+    display:none !important;
+}
+
+#telaLogin{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#0b3d62,#1976a8);
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    border-radius:16px;
+    padding:28px;
+    box-shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+.login-box h1{
+    margin:0 0 8px;
+    text-align:center;
+    color:#0b3d62;
+}
+
+.login-box p{
+    text-align:center;
+    color:#667;
+    margin-bottom:25px;
+}
+
+#sistema{
+    min-height:100vh;
 }
 
 .topo{
-    max-width:1200px;
+    background:#0b3d62;
+    color:white;
+    padding:16px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.topo-conteudo{
+    max-width:1400px;
     margin:auto;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:10px;
+    align-items:center;
+    gap:15px;
 }
 
 .topo h1{
     margin:0;
-    font-size:20px;
+    font-size:22px;
 }
 
-.usuario{
-    font-size:13px;
+.usuario-info{
     text-align:right;
+    font-size:13px;
 }
 
 .container{
-    max-width:1200px;
+    max-width:1400px;
     margin:auto;
-    padding:15px;
+    padding:18px;
 }
 
 .card{
     background:white;
     border-radius:12px;
-    padding:16px;
-    margin-bottom:15px;
-    box-shadow:0 2px 8px #00000012;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-.card h2{
-    margin:0 0 14px;
-    color:#0b3954;
-    font-size:19px;
-}
-
+.card h2,
 .card h3{
-    color:#0b3954;
+    margin-top:0;
+    color:#0b3d62;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
     gap:12px;
 }
 
 .grid2{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:12px;
+}
+
+@media(max-width:700px){
+    .grid2{
+        grid-template-columns:1fr;
+    }
+
+    .topo-conteudo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .usuario-info{
+        text-align:left;
+    }
 }
 
 label{
@@ -88,17 +152,19 @@ label{
     font-weight:bold;
     font-size:13px;
     margin-bottom:5px;
+    color:#34495e;
 }
 
 input,
 select,
 textarea{
     width:100%;
-    padding:11px;
-    border:1px solid #ccd5dd;
-    border-radius:8px;
-    font-size:15px;
-    background:white;
+    padding:10px;
+    border:1px solid #cbd5df;
+    border-radius:7px;
+    background:#fff;
+    color:#17212b;
+    font-size:14px;
 }
 
 textarea{
@@ -106,17 +172,21 @@ textarea{
     resize:vertical;
 }
 
-button{
-    border:0;
-    border-radius:8px;
-    padding:11px 15px;
-    cursor:pointer;
-    font-weight:bold;
-    font-size:14px;
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#1976a8;
+    box-shadow:0 0 0 2px rgba(25,118,168,.12);
 }
 
 .btn{
-    background:#0b3954;
+    border:0;
+    border-radius:7px;
+    padding:10px 14px;
+    font-weight:bold;
+    margin:3px;
+    background:#1976a8;
     color:white;
 }
 
@@ -124,337 +194,251 @@ button{
     opacity:.9;
 }
 
-.btn-sec{
-    background:#607d8b;
-    color:white;
+.btn-verde{
+    background:#16834b;
 }
 
-.btn-ok{
-    background:#198754;
-    color:white;
+.btn-vermelho{
+    background:#c0392b;
 }
 
-.btn-warning{
-    background:#f0ad00;
-    color:#111;
+.btn-laranja{
+    background:#d98200;
 }
 
-.btn-danger{
-    background:#c62828;
-    color:white;
+.btn-cinza{
+    background:#66727d;
 }
 
-.btn-light{
-    background:#e9eef2;
-    color:#17212b;
+.btn-roxo{
+    background:#6842a5;
+}
+
+.btn-preto{
+    background:#27323a;
 }
 
 .botoes{
     display:flex;
     flex-wrap:wrap;
-    gap:8px;
+    gap:5px;
     margin-top:12px;
 }
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:12px;
+    margin-bottom:18px;
 }
 
 .stat{
     background:white;
     border-radius:12px;
-    padding:15px;
-    box-shadow:0 2px 8px #00000012;
+    padding:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    border-left:5px solid #1976a8;
 }
 
 .stat strong{
     display:block;
-    font-size:25px;
-    color:#0b3954;
+    font-size:28px;
+    color:#0b3d62;
 }
 
 .stat span{
     font-size:13px;
-    color:#65727c;
+    color:#667;
 }
 
 .local{
-    border:1px solid #dce3e8;
+    border:1px solid #d6dee5;
     border-radius:10px;
     padding:14px;
     margin-bottom:10px;
+    background:#fafcfd;
 }
 
-.local.selecionado{
-    border:2px solid #0b3954;
-    background:#f2f8fb;
-}
-
-.local-topo{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    align-items:flex-start;
-}
-
-.local h3{
-    margin:0 0 5px;
-}
-
-.badge{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-    background:#e5edf2;
-}
-
-.badge-admin{
-    background:#ffe3e3;
-    color:#a00000;
-}
-
-.badge-prof{
-    background:#e1f5e8;
-    color:#146c35;
-}
-
-.badge-vis{
-    background:#e7edf1;
-    color:#455a64;
+.local strong{
+    color:#0b3d62;
 }
 
 .os{
-    border:1px solid #d8e0e6;
+    border:1px solid #d6dee5;
     border-radius:10px;
-    padding:14px;
+    padding:15px;
+    margin-bottom:12px;
+    background:#fff;
+}
+
+.os-cabecalho{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    border-bottom:1px solid #e0e5e9;
+    padding-bottom:10px;
     margin-bottom:10px;
 }
 
-.os-topo{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:10px;
-}
-
-.os-numero{
-    color:#0b3954;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.mini{
-    font-size:12px;
-    color:#65727c;
+.os-cabecalho strong{
+    color:#0b3d62;
 }
 
 .resultados{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
     gap:10px;
-    margin-top:12px;
+    margin-top:10px;
 }
 
 .resultado{
-    background:#f1f5f8;
+    background:#f3f7fa;
     border-radius:8px;
     padding:10px;
 }
 
-.resultado span{
-    display:block;
-    font-size:11px;
-    color:#64727d;
-}
-
 .resultado strong{
+    display:block;
     font-size:18px;
+    color:#0b3d62;
 }
 
-.status-normal{
-    background:#d9f3e2;
-    color:#126b35;
+.ok{
+    color:#16834b;
+    font-weight:bold;
 }
 
-.status-atencao{
-    background:#fff0bd;
-    color:#755500;
+.alerta{
+    color:#c0392b;
+    font-weight:bold;
 }
 
-.status-critico{
-    background:#ffdcdc;
-    color:#a00000;
+.neutro{
+    color:#66727d;
+    font-weight:bold;
 }
 
 .checks{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:8px;
+    margin-top:8px;
 }
 
-.check{
-    border:1px solid #d9e0e5;
-    border-radius:8px;
-    padding:9px;
-}
-
-.check label{
+.check-item{
     display:flex;
-    gap:8px;
     align-items:center;
-    margin:0;
-    font-weight:normal;
+    gap:8px;
+    border:1px solid #dde4e9;
+    border-radius:7px;
+    padding:8px;
+    background:#fafcfd;
 }
 
-.check input{
+.check-item input{
     width:auto;
 }
 
 .titulo-secao{
-    border-left:4px solid #0b3954;
-    padding-left:9px;
-    margin:18px 0 10px;
-    color:#0b3954;
+    border-left:5px solid #1976a8;
+    padding-left:10px;
+    margin:22px 0 12px;
 }
 
-#telaLogin{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background:linear-gradient(135deg,#0b3954,#176087);
+.badge{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    background:#e6eef4;
+    color:#0b3d62;
 }
 
-.login{
-    width:100%;
-    max-width:400px;
-    background:white;
-    border-radius:15px;
-    padding:25px;
-    box-shadow:0 8px 30px #0005;
-}
-
-.login h1{
-    color:#0b3954;
-    text-align:center;
-}
-
-.login p{
-    text-align:center;
-    color:#667;
-}
-
-.login .campo{
-    margin-bottom:12px;
-}
-
-.oculto{
-    display:none !important;
-}
-
-table{
+.tabela{
     width:100%;
     border-collapse:collapse;
     margin-top:10px;
 }
 
-th,
-td{
-    border:1px solid #d8e0e6;
-    padding:9px;
+.tabela th,
+.tabela td{
+    border:1px solid #d7dfe5;
+    padding:8px;
     text-align:left;
     font-size:13px;
 }
 
-th{
-    background:#0b3954;
-    color:white;
-}
-
-tr:nth-child(even){
-    background:#f5f7f9;
-}
-
-.info{
-    background:#e8f3f9;
-    border-left:4px solid #0b3954;
-    padding:10px;
-    border-radius:6px;
-    font-size:13px;
+.tabela th{
+    background:#edf3f7;
+    color:#0b3d62;
 }
 
 .aviso{
-    background:#fff4d6;
-    border-left:4px solid #e0a000;
-    padding:10px;
+    background:#fff7dc;
+    border-left:5px solid #d98200;
+    padding:12px;
     border-radius:6px;
-    font-size:13px;
+    margin-bottom:12px;
 }
 
-@media(max-width:800px){
-    .grid,
-    .grid2,
-    .stats,
-    .resultados,
-    .checks{
-        grid-template-columns:1fr 1fr;
-    }
+.info{
+    background:#eaf5fb;
+    border-left:5px solid #1976a8;
+    padding:12px;
+    border-radius:6px;
+    margin-bottom:12px;
 }
 
-@media(max-width:550px){
-    .grid,
-    .grid2,
-    .stats,
-    .resultados,
-    .checks{
-        grid-template-columns:1fr;
-    }
+.perigo{
+    background:#fdecea;
+    border-left:5px solid #c0392b;
+    padding:12px;
+    border-radius:6px;
+    margin-bottom:12px;
+}
 
-    .topo{
-        align-items:flex-start;
-    }
+.vazio{
+    text-align:center;
+    padding:25px;
+    color:#71808c;
+}
 
-    .topo h1{
-        font-size:17px;
-    }
+.pequeno{
+    font-size:12px;
+    color:#667;
+}
 
-    .topo{
-        flex-direction:column;
-    }
-
-    .usuario{
-        text-align:left;
-    }
-
-    table{
-        font-size:11px;
-    }
-
-    th,
-    td{
-        padding:6px;
-    }
+hr{
+    border:0;
+    border-top:1px solid #e0e5e9;
+    margin:18px 0;
 }
 
 @media print{
-    header,
-    .no-print,
-    button{
+    body{
+        background:white;
+    }
+
+    .topo,
+    .nao-imprimir{
         display:none !important;
     }
 
-    body{
-        background:white;
+    .container{
+        max-width:none;
+        padding:0;
     }
 
     .card{
         box-shadow:none;
         border:1px solid #ccc;
+        page-break-inside:avoid;
+    }
+
+    button{
+        display:none !important;
     }
 }
 </style>
@@ -463,215 +447,235 @@ tr:nth-child(even){
 <body>
 
 <!-- LOGIN -->
-<div id="telaLogin">
+<section id="telaLogin">
 
-    <div class="login">
+    <div class="login-box">
 
-        <h1>⚡ Gestão QDC</h1>
+        <h1>Gestão QDC</h1>
 
         <p>
-            Sistema de O.S., análises e histórico
+            Sistema de cadastro, O.S. e análise elétrica
         </p>
 
-        <div class="campo">
-            <label>Usuário</label>
-            <input id="loginUsuario" placeholder="Digite o usuário">
+        <label for="loginUsuario">Usuário</label>
+        <input id="loginUsuario" type="text" placeholder="Digite o usuário">
+
+        <br><br>
+
+        <label for="loginSenha">Senha</label>
+        <input id="loginSenha" type="password" placeholder="Digite a senha">
+
+        <div class="botoes">
+            <button class="btn" style="width:100%;" onclick="entrar()">
+                Entrar
+            </button>
         </div>
 
-        <div class="campo">
-            <label>Senha</label>
-            <input id="loginSenha" type="password" placeholder="Digite a senha">
-        </div>
-
-        <button class="btn" style="width:100%" onclick="entrar()">
-            ENTRAR
-        </button>
-
-        <div class="info" style="margin-top:15px">
-            <b>Usuários de teste</b><br>
-            admin / 1234<br>
-            tecnico / 1234<br>
+        <div class="pequeno" style="margin-top:15px;">
+            Usuários padrão: admin / 1234,
+            tecnico / 1234,
             visitante / visitante
         </div>
 
     </div>
 
-</div>
+</section>
 
 
 <!-- SISTEMA -->
-<div id="sistema" class="oculto">
+<section id="sistema" class="oculto">
 
-<header>
+    <header class="topo">
 
-    <div class="topo">
-
-        <h1>⚡ Gestão QDC — O.S. e Análises</h1>
-
-        <div class="usuario">
-            <span id="usuarioLogado"></span><br>
-            <button class="btn-light" onclick="sair()">Sair</button>
-        </div>
-
-    </div>
-
-</header>
-
-
-<div class="container">
-
-    <!-- RESUMO -->
-    <div class="stats">
-
-        <div class="stat">
-            <strong id="totalLocais">0</strong>
-            <span>Locais / QDCs</span>
-        </div>
-
-        <div class="stat">
-            <strong id="totalOS">0</strong>
-            <span>O.S. cadastradas</span>
-        </div>
-
-        <div class="stat">
-            <strong id="totalAnalises">0</strong>
-            <span>Análises realizadas</span>
-        </div>
-
-        <div class="stat">
-            <strong id="tipoAcesso">-</strong>
-            <span>Nível de acesso</span>
-        </div>
-
-    </div>
-
-
-    <!-- CADASTRO DO LOCAL -->
-    <div class="card">
-
-        <h2>📍 Cadastro de Local / QDC</h2>
-
-        <div class="grid">
+        <div class="topo-conteudo">
 
             <div>
-                <label>Código do QDC</label>
-                <input id="qdcCodigo" placeholder="Ex.: QDC-01">
+                <h1>Gestão QDC - O.S. e Análises</h1>
+                <div style="font-size:12px;">
+                    Cadastro e acompanhamento de Quadros de Distribuição
+                </div>
             </div>
 
-            <div>
-                <label>Nome / Identificação</label>
-                <input id="qdcNome" placeholder="Ex.: QDC Produção">
-            </div>
+            <div class="usuario-info">
 
-            <div>
-                <label>Tensão nominal</label>
-                <input id="qdcTensao" placeholder="Ex.: 380 V">
-            </div>
+                <div id="usuarioLogado"></div>
+                <div id="perfilLogado"></div>
 
-            <div>
-                <label>Sistema</label>
-                <select id="qdcSistema">
-                    <option value="">Selecione</option>
-                    <option>Trifásico</option>
-                    <option>Bifásico</option>
-                    <option>Monofásico</option>
-                </select>
-            </div>
+                <button class="btn btn-cinza" onclick="sair()">
+                    Sair
+                </button>
 
-            <div>
-                <label>Localização física</label>
-                <input id="qdcLocalizacao" placeholder="Ex.: Sala elétrica">
-            </div>
-
-            <div>
-                <label>Origem da alimentação</label>
-                <input id="qdcOrigem" placeholder="Ex.: QGBT-01">
             </div>
 
         </div>
 
-        <div style="margin-top:12px">
+    </header>
 
-            <label>Principais circuitos / cargas</label>
 
-            <textarea id="qdcCargas"
-            placeholder="Descreva os principais circuitos e cargas atendidas pelo QDC"></textarea>
+    <main class="container">
 
-        </div>
 
-        <div style="margin-top:12px">
+        <!-- ESTATÍSTICAS -->
+        <section class="stats">
+
+            <div class="stat">
+                <strong id="totalLocais">0</strong>
+                <span>QDC cadastrados</span>
+            </div>
+
+            <div class="stat">
+                <strong id="totalOS">0</strong>
+                <span>O.S. registradas</span>
+            </div>
+
+            <div class="stat">
+                <strong id="totalAnalises">0</strong>
+                <span>Análises realizadas</span>
+            </div>
+
+            <div class="stat">
+                <strong id="tipoAcesso">-</strong>
+                <span>Nível de acesso</span>
+            </div>
+
+        </section>
+
+
+        <!-- CADASTRO QDC -->
+        <section class="card">
+
+            <h2 class="titulo-secao">
+                Cadastro do QDC
+            </h2>
+
+            <div class="info">
+                Os dados cadastrados ficam armazenados neste dispositivo,
+                no LocalStorage do navegador.
+            </div>
+
+            <input type="hidden" id="qdcIdEdicao">
+
+            <div class="grid">
+
+                <div>
+                    <label>Código do QDC</label>
+                    <input id="qdcCodigo" placeholder="Ex.: QDC-01">
+                </div>
+
+                <div>
+                    <label>Nome / Identificação</label>
+                    <input id="qdcNome" placeholder="Ex.: QDC Geral">
+                </div>
+
+                <div>
+                    <label>Tensão nominal</label>
+                    <input id="qdcTensao" placeholder="Ex.: 380 V">
+                </div>
+
+                <div>
+                    <label>Sistema</label>
+                    <select id="qdcSistema">
+                        <option value="">Selecione</option>
+                        <option>Trifásico</option>
+                        <option>Bifásico</option>
+                        <option>Monofásico</option>
+                        <option>CC</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Localização física</label>
+                    <input id="qdcLocalizacao" placeholder="Ex.: Sala elétrica">
+                </div>
+
+                <div>
+                    <label>Origem da alimentação</label>
+                    <input id="qdcOrigem" placeholder="Ex.: QGBT">
+                </div>
+
+                <div>
+                    <label>Principais circuitos / cargas</label>
+                    <input id="qdcCargas" placeholder="Ex.: Bombas, iluminação...">
+                </div>
+
+            </div>
+
+            <br>
 
             <label>Descrição</label>
-
             <textarea id="qdcDescricao"
-            placeholder="Informações complementares do local"></textarea>
+                placeholder="Informações complementares do QDC"></textarea>
 
-        </div>
+            <div class="botoes">
 
-        <div class="botoes">
+                <button id="salvarLocal"
+                        class="btn btn-verde"
+                        onclick="salvarLocal()">
+                    💾 Salvar Cadastro
+                </button>
 
-            <button class="btn" onclick="salvarLocal()">
-                💾 Cadastrar Local
-            </button>
+                <button id="imprimirCadastroFormulario"
+                        class="btn btn-preto"
+                        onclick="imprimirCadastroAtual()">
+                    🖨️ Imprimir Cadastro
+                </button>
 
-            <button class="btn-light" onclick="limparLocal()">
-                Limpar
-            </button>
+                <button id="cancelarEdicaoLocal"
+                        class="btn btn-cinza oculto"
+                        onclick="cancelarEdicaoLocal()">
+                    ❌ Cancelar Alteração
+                </button>
 
-        </div>
+            </div>
 
-    </div>
-
-
-    <!-- LOCAIS -->
-    <div class="card">
-
-        <h2>📍 Locais / QDCs cadastrados</h2>
-
-        <div id="listaLocais"></div>
-
-    </div>
+        </section>
 
 
-    <!-- LOCAL SELECIONADO -->
-    <div id="areaLocalSelecionado" class="oculto">
+        <!-- LISTA -->
+        <section class="card">
 
-        <div class="card">
+            <h2 class="titulo-secao">
+                QDCs cadastrados
+            </h2>
 
-            <h2>📌 Local selecionado</h2>
+            <div id="listaLocais"></div>
+
+        </section>
+
+
+        <!-- LOCAL SELECIONADO -->
+        <section id="areaLocalSelecionado" class="card oculto">
+
+            <h2 class="titulo-secao">
+                QDC selecionado
+            </h2>
 
             <div id="dadosLocalSelecionado"></div>
 
             <div class="botoes">
 
-                <button
-                    id="btnNovaOS"
-                    class="btn"
-                    onclick="mostrarFormularioOS()">
-                    ➕ Nova O.S.
+                <button class="btn btn-verde"
+                        onclick="mostrarFormularioOS()">
+                    ➕ Nova O.S. / Análise
                 </button>
 
-                <button
-                    class="btn-sec"
-                    onclick="irHistorico()">
-                    📋 Histórico
-                </button>
-
-                <button
-                    class="btn-light"
-                    onclick="imprimirLocal()">
-                    🖨 Imprimir Local
+                <button class="btn btn-preto"
+                        onclick="imprimirLocalSelecionado()">
+                    🖨️ Imprimir Cadastro
                 </button>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- FORM O.S. -->
-        <div id="formOS" class="card oculto">
+        <!-- FORMULÁRIO O.S. -->
+        <section id="areaFormularioOS" class="card oculto">
 
-            <h2 id="tituloFormOS">📝 Nova O.S.</h2>
+            <h2 class="titulo-secao">
+                Ordem de Serviço / Análise
+            </h2>
 
             <input type="hidden" id="osIdEdicao">
 
@@ -679,12 +683,12 @@ tr:nth-child(even){
 
                 <div>
                     <label>Data</label>
-                    <input type="date" id="osData">
+                    <input id="osData" type="date">
                 </div>
 
                 <div>
                     <label>Hora</label>
-                    <input type="time" id="osHora">
+                    <input id="osHora" type="time">
                 </div>
 
                 <div>
@@ -695,18 +699,20 @@ tr:nth-child(even){
                 <div>
                     <label>Tipo de serviço</label>
                     <select id="osTipo">
+                        <option value="">Selecione</option>
                         <option>Inspeção</option>
                         <option>Manutenção preventiva</option>
                         <option>Manutenção corretiva</option>
                         <option>Medição elétrica</option>
-                        <option>Diagnóstico</option>
+                        <option>Análise de falha</option>
+                        <option>Termografia</option>
                         <option>Outro</option>
                     </select>
                 </div>
 
                 <div>
-                    <label>Disjuntor geral nominal</label>
-                    <input id="osDisjuntor" placeholder="Ex.: 630 A">
+                    <label>Disjuntor geral</label>
+                    <input id="osDisjuntor" placeholder="Ex.: 400 A">
                 </div>
 
                 <div>
@@ -716,52 +722,63 @@ tr:nth-child(even){
 
                 <div>
                     <label>Temperatura do quadro</label>
-                    <input id="osTemperatura" type="number" step="0.1" placeholder="°C">
+                    <input id="osTemperatura"
+                           type="number"
+                           step="0.1"
+                           placeholder="°C">
                 </div>
 
                 <div>
                     <label>Situação geral</label>
                     <select id="osSituacao">
-                        <option value="NORMAL">NORMAL</option>
-                        <option value="ATENÇÃO">ATENÇÃO</option>
-                        <option value="CRÍTICO">CRÍTICO</option>
+                        <option value="">Selecione</option>
+                        <option>Normal</option>
+                        <option>Atenção</option>
+                        <option>Anormal</option>
+                        <option>Crítica</option>
                     </select>
                 </div>
 
             </div>
 
 
-            <div class="titulo-secao">
-                ⚡ Medições de tensão
-            </div>
+            <!-- TENSÃO -->
+            <h3 class="titulo-secao">
+                Medições de tensão
+            </h3>
 
             <div class="grid">
 
                 <div>
-                    <label>AB — Volts</label>
-                    <input id="vAB" type="number" step="0.1"
-                    oninput="calcularMedicoes()">
+                    <label>AB (V)</label>
+                    <input id="vAB"
+                           type="number"
+                           step="0.1"
+                           oninput="calcularMedicoes()">
                 </div>
 
                 <div>
-                    <label>BC — Volts</label>
-                    <input id="vBC" type="number" step="0.1"
-                    oninput="calcularMedicoes()">
+                    <label>BC (V)</label>
+                    <input id="vBC"
+                           type="number"
+                           step="0.1"
+                           oninput="calcularMedicoes()">
                 </div>
 
                 <div>
-                    <label>CA — Volts</label>
-                    <input id="vCA" type="number" step="0.1"
-                    oninput="calcularMedicoes()">
+                    <label>CA (V)</label>
+                    <input id="vCA"
+                           type="number"
+                           step="0.1"
+                           oninput="calcularMedicoes()">
                 </div>
 
             </div>
 
-
             <div class="resultados">
 
                 <div class="resultado">
-                    <span>Tensão média</span>
+                    <span>Média</span>
                     <strong id="tensaoMedia">-</strong>
                 </div>
 
@@ -775,53 +792,46 @@ tr:nth-child(even){
                     <strong id="desbalTensao">-</strong>
                 </div>
 
-                <div class="resultado">
-                    <span>Referência</span>
-                    <strong>2%</strong>
-                </div>
-
             </div>
 
 
-            <div class="aviso" style="margin-top:10px">
-                Fórmula usada:
-                <b>desbalanceamento = maior desvio da média ÷ média × 100</b>.
-                O valor de 2% é apresentado como referência de análise e deve ser
-                confrontado com os requisitos do equipamento e da instalação.
-            </div>
-
-
-            <div class="titulo-secao">
-                🔌 Medições de corrente
-            </div>
+            <!-- CORRENTE -->
+            <h3 class="titulo-secao">
+                Medições de corrente
+            </h3>
 
             <div class="grid">
 
                 <div>
-                    <label>Corrente A</label>
-                    <input id="iA" type="number" step="0.1"
-                    oninput="calcularMedicoes()">
+                    <label>Corrente A (A)</label>
+                    <input id="iA"
+                           type="number"
+                           step="0.1"
+                           oninput="calcularMedicoes()">
                 </div>
 
                 <div>
-                    <label>Corrente B</label>
-                    <input id="iB" type="number" step="0.1"
-                    oninput="calcularMedicoes()">
+                    <label>Corrente B (A)</label>
+                    <input id="iB"
+                           type="number"
+                           step="0.1"
+                           oninput="calcularMedicoes()">
                 </div>
 
                 <div>
-                    <label>Corrente C</label>
-                    <input id="iC" type="number" step="0.1"
-                    oninput="calcularMedicoes()">
+                    <label>Corrente C (A)</label>
+                    <input id="iC"
+                           type="number"
+                           step="0.1"
+                           oninput="calcularMedicoes()">
                 </div>
 
             </div>
 
-
             <div class="resultados">
 
                 <div class="resultado">
-                    <span>Corrente média</span>
+                    <span>Média</span>
                     <strong id="correnteMedia">-</strong>
                 </div>
 
@@ -838,177 +848,159 @@ tr:nth-child(even){
             </div>
 
 
-            <div class="titulo-secao">
-                🔎 Inspeção do QDC
-            </div>
+            <!-- INSPEÇÃO -->
+            <h3 class="titulo-secao">
+                Inspeção do QDC
+            </h3>
 
             <div class="checks">
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkDisjuntor">
-                        Disjuntor geral
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkDisjuntor">
+                    Disjuntor
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkBarramento">
-                        Barramentos
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkBarramento">
+                    Barramentos
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkConexoes">
-                        Conexões / aperto
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkConexoes">
+                    Conexões
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkAterramento">
-                        Aterramento
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkAterramento">
+                    Aterramento
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkDR">
-                        DR
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkDR">
+                    DR
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkDPS">
-                        DPS
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkDPS">
+                    DPS
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkIdentificacao">
-                        Identificação
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkIdentificacao">
+                    Identificação
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkLimpeza">
-                        Limpeza / organização
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkLimpeza">
+                    Limpeza / organização
+                </label>
 
-                <div class="check">
-                    <label>
-                        <input type="checkbox" id="checkAquecimento">
-                        Aquecimento / pontos quentes
-                    </label>
-                </div>
+                <label class="check-item">
+                    <input type="checkbox" id="checkAquecimento">
+                    Aquecimento / pontos quentes
+                </label>
 
             </div>
 
 
-            <div class="titulo-secao">
-                📝 Serviço e observações
-            </div>
+            <br>
+
+            <label>Serviço executado / observações</label>
 
             <textarea id="osObservacoes"
-            placeholder="Descreva o serviço realizado, medições, anomalias encontradas e observações"></textarea>
+                      placeholder="Descreva medições, anormalidades, serviços realizados, recomendações etc."></textarea>
 
 
             <div class="botoes">
 
-                <button class="btn" onclick="salvarOS()">
+                <button class="btn btn-verde"
+                        onclick="salvarOS()">
                     💾 Salvar O.S.
                 </button>
 
-                <button class="btn-light" onclick="cancelarOS()">
-                    Cancelar
+                <button class="btn btn-preto"
+                        onclick="imprimirFormularioOS()">
+                    🖨️ Imprimir O.S.
+                </button>
+
+                <button class="btn btn-cinza"
+                        onclick="fecharFormularioOS()">
+                    Fechar
                 </button>
 
             </div>
 
-        </div>
+        </section>
 
 
         <!-- HISTÓRICO -->
-        <div id="historico" class="card">
+        <section class="card">
 
-            <h2>📋 Histórico de O.S. e análises</h2>
+            <h2 class="titulo-secao">
+                Histórico de análises / O.S.
+            </h2>
 
-            <div class="info">
-                As análises abaixo ficam armazenadas no
-                <b>localStorage</b> deste dispositivo.
+            <div id="historico">
+                <div class="vazio">
+                    Selecione um QDC para visualizar o histórico.
+                </div>
             </div>
 
-            <div id="listaOS" style="margin-top:12px"></div>
-
-        </div>
+        </section>
 
 
         <!-- COMPARAÇÃO -->
-        <div class="card">
+        <section class="card">
 
-            <h2>📊 Comparação de análises</h2>
+            <h2 class="titulo-secao">
+                Comparação de análises
+            </h2>
 
             <div class="grid2">
 
                 <div>
                     <label>Primeira análise</label>
-                    <select id="comparar1"></select>
+                    <select id="comparar1">
+                        <option value="">Selecione</option>
+                    </select>
                 </div>
 
                 <div>
                     <label>Segunda análise</label>
-                    <select id="comparar2"></select>
+                    <select id="comparar2">
+                        <option value="">Selecione</option>
+                    </select>
                 </div>
 
             </div>
 
             <div class="botoes">
 
-                <button class="btn" onclick="compararAnalises()">
+                <button class="btn btn-roxo"
+                        onclick="compararAnalises()">
                     📊 Comparar
-                </button>
-
-                <button class="btn-light" onclick="limparComparacao()">
-                    Limpar
                 </button>
 
             </div>
 
             <div id="resultadoComparacao"></div>
 
-        </div>
+        </section>
 
-    </div>
+    </main>
 
-</div>
-
-</div>
+</section>
 
 
 <script>
 
-/* ============================================================
+/* =========================================================
    CONFIGURAÇÃO
-============================================================ */
+========================================================= */
 
 const CHAVE_LOCAIS = "QDC_LOCAIS_V5";
 const CHAVE_OS = "QDC_OS_V5";
-
-let locais = JSON.parse(localStorage.getItem(CHAVE_LOCAIS) || "[]");
-let ordens = JSON.parse(localStorage.getItem(CHAVE_OS) || "[]");
-
-let usuario = null;
-let localSelecionado = null;
-
-
-/* ============================================================
-   USUÁRIOS
-============================================================ */
+const CHAVE_SESSAO = "QDC_SESSAO_V5";
 
 const usuarios = {
 
@@ -1033,157 +1025,288 @@ const usuarios = {
 };
 
 
-/* ============================================================
+let locais = [];
+let ordens = [];
+
+let usuario = null;
+let localSelecionado = null;
+
+
+/* =========================================================
+   LOCALSTORAGE SEGURO
+========================================================= */
+
+function carregarDados(){
+
+    try{
+
+        const dadosLocais =
+            localStorage.getItem(CHAVE_LOCAIS);
+
+        const dadosOS =
+            localStorage.getItem(CHAVE_OS);
+
+        locais =
+            dadosLocais
+            ? JSON.parse(dadosLocais)
+            : [];
+
+        ordens =
+            dadosOS
+            ? JSON.parse(dadosOS)
+            : [];
+
+        if(!Array.isArray(locais)){
+            locais = [];
+        }
+
+        if(!Array.isArray(ordens)){
+            ordens = [];
+        }
+
+    }catch(erro){
+
+        console.error(
+            "Erro ao carregar LocalStorage:",
+            erro
+        );
+
+        locais = [];
+        ordens = [];
+
+    }
+
+}
+
+
+function salvarDados(){
+
+    try{
+
+        localStorage.setItem(
+            CHAVE_LOCAIS,
+            JSON.stringify(locais)
+        );
+
+        localStorage.setItem(
+            CHAVE_OS,
+            JSON.stringify(ordens)
+        );
+
+        return true;
+
+    }catch(erro){
+
+        console.error(
+            "Erro ao salvar LocalStorage:",
+            erro
+        );
+
+        alert(
+            "Não foi possível salvar os dados no navegador."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
    LOGIN
-============================================================ */
+========================================================= */
 
 function entrar(){
 
     const login =
-        document.getElementById("loginUsuario").value.trim();
+        document.getElementById("loginUsuario")
+        .value
+        .trim()
+        .toLowerCase();
 
     const senha =
-        document.getElementById("loginSenha").value;
+        document.getElementById("loginSenha")
+        .value;
 
-    if(!usuarios[login]){
-        alert("Usuário não encontrado.");
-        return;
-    }
+    if(
+        !usuarios[login] ||
+        usuarios[login].senha !== senha
+    ){
 
-    if(usuarios[login].senha !== senha){
-        alert("Senha incorreta.");
+        alert("Usuário ou senha inválidos.");
         return;
+
     }
 
     usuario = {
+
         usuario:login,
+
         nome:usuarios[login].nome,
+
         perfil:usuarios[login].perfil
+
     };
 
-    sessionStorage.setItem(
-        "QDC_SESSAO_V5",
-        JSON.stringify(usuario)
-    );
+    try{
+
+        sessionStorage.setItem(
+            CHAVE_SESSAO,
+            JSON.stringify(usuario)
+        );
+
+    }catch(e){}
 
     iniciarSistema();
+
 }
 
 
 function iniciarSistema(){
 
-    document.getElementById("telaLogin")
-        .classList.add("oculto");
+    document
+        .getElementById("telaLogin")
+        .classList
+        .add("oculto");
 
-    document.getElementById("sistema")
-        .classList.remove("oculto");
+    document
+        .getElementById("sistema")
+        .classList
+        .remove("oculto");
 
-    document.getElementById("usuarioLogado").innerHTML =
-        usuario.nome +
-        " — " +
+    document
+        .getElementById("usuarioLogado")
+        .textContent =
+        usuario.nome;
+
+    document
+        .getElementById("perfilLogado")
+        .textContent =
         usuario.perfil;
 
-    document.getElementById("tipoAcesso").textContent =
+    document
+        .getElementById("tipoAcesso")
+        .textContent =
         usuario.perfil;
 
     aplicarPermissoes();
 
     atualizarTudo();
+
 }
 
 
 function sair(){
 
-    sessionStorage.removeItem("QDC_SESSAO_V5");
+    try{
+        sessionStorage.removeItem(CHAVE_SESSAO);
+    }catch(e){}
 
-    location.reload();
+    usuario = null;
+
+    document
+        .getElementById("sistema")
+        .classList
+        .add("oculto");
+
+    document
+        .getElementById("telaLogin")
+        .classList
+        .remove("oculto");
+
+    document
+        .getElementById("loginSenha")
+        .value = "";
+
 }
 
-
-/* ============================================================
-   PERMISSÕES
-============================================================ */
 
 function podeEditar(){
 
     return usuario &&
-    (
-        usuario.perfil === "Administrador" ||
-        usuario.perfil === "Profissional"
-    );
+        (
+            usuario.perfil === "Administrador" ||
+            usuario.perfil === "Profissional"
+        );
+
 }
 
 
 function podeExcluir(){
 
     return usuario &&
-    usuario.perfil === "Administrador";
+        usuario.perfil === "Administrador";
+
 }
 
 
 function aplicarPermissoes(){
 
-    const cadastro =
-        document.querySelector(".card");
+    const campos = [
 
-    if(usuario.perfil === "Visitante"){
+        "qdcCodigo",
+        "qdcNome",
+        "qdcTensao",
+        "qdcSistema",
+        "qdcLocalizacao",
+        "qdcOrigem",
+        "qdcCargas",
+        "qdcDescricao"
 
-        /*
-         * O formulário de cadastro recebe bloqueio
-         */
-        const inputs =
-            document.querySelectorAll(
-                "#qdcCodigo,#qdcNome,#qdcTensao,#qdcSistema,#qdcLocalizacao,#qdcOrigem,#qdcCargas,#qdcDescricao"
-            );
+    ];
 
-        inputs.forEach(x => x.disabled = true);
+    const visitante =
+        usuario &&
+        usuario.perfil === "Visitante";
 
-        const botoes =
-            document.querySelectorAll(
-                'button[onclick="salvarLocal()"]'
-            );
+    campos.forEach(id=>{
 
-        botoes.forEach(x => x.style.display="none");
+        const el =
+            document.getElementById(id);
+
+        if(el){
+            el.disabled = visitante;
+        }
+
+    });
+
+    const salvar =
+        document.getElementById("salvarLocal");
+
+    if(salvar){
+
+        salvar.classList.toggle(
+            "oculto",
+            visitante
+        );
 
     }
 
 }
 
 
-/* ============================================================
-   LOCAL STORAGE
-============================================================ */
-
-function salvarDados(){
-
-    localStorage.setItem(
-        CHAVE_LOCAIS,
-        JSON.stringify(locais)
-    );
-
-    localStorage.setItem(
-        CHAVE_OS,
-        JSON.stringify(ordens)
-    );
-
-}
-
-
-/* ============================================================
+/* =========================================================
    ATUALIZAÇÃO GERAL
-============================================================ */
+========================================================= */
 
 function atualizarTudo(){
 
-    salvarDados();
+    carregarDados();
 
-    document.getElementById("totalLocais").textContent =
+    document
+        .getElementById("totalLocais")
+        .textContent =
         locais.length;
 
-    document.getElementById("totalOS").textContent =
+    document
+        .getElementById("totalOS")
+        .textContent =
         ordens.length;
 
-    document.getElementById("totalAnalises").textContent =
+    document
+        .getElementById("totalAnalises")
+        .textContent =
         ordens.length;
 
     renderLocais();
@@ -1191,12 +1314,16 @@ function atualizarTudo(){
     if(localSelecionado){
 
         const existe =
-            locais.find(x => x.id === localSelecionado);
+            locais.find(
+                x => x.id === localSelecionado
+            );
 
         if(existe){
 
             renderLocalSelecionado();
+
             atualizarHistorico();
+
             atualizarSelectComparacao();
 
         }else{
@@ -1205,7 +1332,9 @@ function atualizarTudo(){
 
             document
                 .getElementById("areaLocalSelecionado")
-                .classList.add("oculto");
+                .classList
+                .add("oculto");
+
         }
 
     }
@@ -1213,91 +1342,434 @@ function atualizarTudo(){
 }
 
 
-/* ============================================================
-   CADASTRO DO LOCAL
-============================================================ */
+/* =========================================================
+   CADASTRO QDC
+========================================================= */
+
+function obterDadosCadastroFormulario(){
+
+    return {
+
+        codigo:
+            document
+            .getElementById("qdcCodigo")
+            .value
+            .trim(),
+
+        nome:
+            document
+            .getElementById("qdcNome")
+            .value
+            .trim(),
+
+        tensao:
+            document
+            .getElementById("qdcTensao")
+            .value
+            .trim(),
+
+        sistema:
+            document
+            .getElementById("qdcSistema")
+            .value,
+
+        localizacao:
+            document
+            .getElementById("qdcLocalizacao")
+            .value
+            .trim(),
+
+        origem:
+            document
+            .getElementById("qdcOrigem")
+            .value
+            .trim(),
+
+        cargas:
+            document
+            .getElementById("qdcCargas")
+            .value
+            .trim(),
+
+        descricao:
+            document
+            .getElementById("qdcDescricao")
+            .value
+            .trim()
+
+    };
+
+}
+
 
 function salvarLocal(){
 
     if(!podeEditar()){
-        alert("Seu perfil não permite cadastrar locais.");
+
+        alert(
+            "Seu perfil não possui permissão para alterar cadastros."
+        );
+
         return;
+
     }
 
-    const codigo =
-        document.getElementById("qdcCodigo").value.trim();
+    const dados =
+        obterDadosCadastroFormulario();
 
-    const nome =
-        document.getElementById("qdcNome").value.trim();
+    if(!dados.codigo || !dados.nome){
 
-    if(!codigo || !nome){
+        alert(
+            "Informe pelo menos o código e o nome do QDC."
+        );
 
-        alert("Informe pelo menos o código e o nome do QDC.");
         return;
+
     }
 
-    const local = {
+    const idEdicao =
+        document
+        .getElementById("qdcIdEdicao")
+        .value;
 
-        id:Date.now().toString(),
+    /* ALTERAÇÃO */
+    if(idEdicao){
 
-        codigo,
+        const indice =
+            locais.findIndex(
+                x => x.id === idEdicao
+            );
 
-        nome,
+        if(indice === -1){
 
-        tensao:
-            document.getElementById("qdcTensao").value.trim(),
+            alert(
+                "Cadastro não encontrado."
+            );
 
-        sistema:
-            document.getElementById("qdcSistema").value,
+            return;
 
-        localizacao:
-            document.getElementById("qdcLocalizacao").value.trim(),
+        }
 
-        origem:
-            document.getElementById("qdcOrigem").value.trim(),
+        locais[indice] = {
 
-        cargas:
-            document.getElementById("qdcCargas").value.trim(),
+            ...locais[indice],
 
-        descricao:
-            document.getElementById("qdcDescricao").value.trim(),
+            ...dados,
 
-        criadoEm:new Date().toISOString()
+            atualizadoEm:
+                new Date().toISOString()
+
+        };
+
+        salvarDados();
+
+        atualizarDadosCadastroDasOS(
+            idEdicao,
+            locais[indice]
+        );
+
+        salvarDados();
+
+        alert(
+            "Cadastro do QDC alterado com sucesso."
+        );
+
+        cancelarEdicaoLocal();
+
+        localSelecionado = idEdicao;
+
+        atualizarTudo();
+
+        return;
+
+    }
+
+
+    /* NOVO CADASTRO */
+
+    const novo = {
+
+        id:
+            Date.now().toString(),
+
+        ...dados,
+
+        criadoEm:
+            new Date().toISOString(),
+
+        atualizadoEm:
+            new Date().toISOString()
 
     };
 
-    locais.push(local);
+    locais.push(novo);
 
     salvarDados();
 
-    limparLocal();
+    limparFormularioLocal();
 
-    localSelecionado = local.id;
+    localSelecionado = novo.id;
 
     atualizarTudo();
 
-    alert("Local/QDC cadastrado com sucesso.");
+    alert(
+        "QDC cadastrado com sucesso."
+    );
+
+    document
+        .getElementById("areaLocalSelecionado")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
 
 }
 
 
-function limparLocal(){
+function atualizarDadosCadastroDasOS(
+    idLocal,
+    novoCadastro
+){
 
-    document.getElementById("qdcCodigo").value="";
-    document.getElementById("qdcNome").value="";
-    document.getElementById("qdcTensao").value="";
-    document.getElementById("qdcSistema").value="";
-    document.getElementById("qdcLocalizacao").value="";
-    document.getElementById("qdcOrigem").value="";
-    document.getElementById("qdcCargas").value="";
-    document.getElementById("qdcDescricao").value="";
+    ordens.forEach(os=>{
+
+        if(os.localId === idLocal){
+
+            os.localCadastro = {
+                ...novoCadastro
+            };
+
+        }
+
+    });
 
 }
 
 
-/* ============================================================
-   LISTA DE LOCAIS
-============================================================ */
+function limparFormularioLocal(){
+
+    document
+        .getElementById("qdcIdEdicao")
+        .value = "";
+
+    document
+        .getElementById("qdcCodigo")
+        .value = "";
+
+    document
+        .getElementById("qdcNome")
+        .value = "";
+
+    document
+        .getElementById("qdcTensao")
+        .value = "";
+
+    document
+        .getElementById("qdcSistema")
+        .value = "";
+
+    document
+        .getElementById("qdcLocalizacao")
+        .value = "";
+
+    document
+        .getElementById("qdcOrigem")
+        .value = "";
+
+    document
+        .getElementById("qdcCargas")
+        .value = "";
+
+    document
+        .getElementById("qdcDescricao")
+        .value = "";
+
+}
+
+
+function editarLocal(id){
+
+    if(!podeEditar()){
+
+        alert(
+            "Seu perfil não possui permissão para editar."
+        );
+
+        return;
+
+    }
+
+    const local =
+        locais.find(
+            x => x.id === id
+        );
+
+    if(!local){
+
+        alert(
+            "Cadastro não encontrado."
+        );
+
+        return;
+
+    }
+
+    document
+        .getElementById("qdcIdEdicao")
+        .value =
+        local.id;
+
+    document
+        .getElementById("qdcCodigo")
+        .value =
+        local.codigo || "";
+
+    document
+        .getElementById("qdcNome")
+        .value =
+        local.nome || "";
+
+    document
+        .getElementById("qdcTensao")
+        .value =
+        local.tensao || "";
+
+    document
+        .getElementById("qdcSistema")
+        .value =
+        local.sistema || "";
+
+    document
+        .getElementById("qdcLocalizacao")
+        .value =
+        local.localizacao || "";
+
+    document
+        .getElementById("qdcOrigem")
+        .value =
+        local.origem || "";
+
+    document
+        .getElementById("qdcCargas")
+        .value =
+        local.cargas || "";
+
+    document
+        .getElementById("qdcDescricao")
+        .value =
+        local.descricao || "";
+
+    document
+        .getElementById("salvarLocal")
+        .textContent =
+        "💾 Salvar Alteração";
+
+    document
+        .getElementById("cancelarEdicaoLocal")
+        .classList
+        .remove("oculto");
+
+    localSelecionado = id;
+
+    renderLocalSelecionado();
+
+    document
+        .getElementById("qdcCodigo")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+}
+
+
+function cancelarEdicaoLocal(){
+
+    limparFormularioLocal();
+
+    document
+        .getElementById("salvarLocal")
+        .textContent =
+        "💾 Salvar Cadastro";
+
+    document
+        .getElementById("cancelarEdicaoLocal")
+        .classList
+        .add("oculto");
+
+}
+
+
+function excluirLocal(id){
+
+    if(!podeExcluir()){
+
+        alert(
+            "Somente o Administrador pode excluir."
+        );
+
+        return;
+
+    }
+
+    const local =
+        locais.find(
+            x => x.id === id
+        );
+
+    if(!local) return;
+
+    const senha =
+        prompt(
+            "Digite a senha de administrador:"
+        );
+
+    if(senha !== "1234"){
+
+        alert("Senha incorreta.");
+        return;
+
+    }
+
+    const confirmar =
+        confirm(
+            "Excluir o QDC " +
+            local.codigo +
+            " e todas as O.S. relacionadas?"
+        );
+
+    if(!confirmar) return;
+
+    locais =
+        locais.filter(
+            x => x.id !== id
+        );
+
+    ordens =
+        ordens.filter(
+            x => x.localId !== id
+        );
+
+    salvarDados();
+
+    if(localSelecionado === id){
+
+        localSelecionado = null;
+
+        document
+            .getElementById("areaLocalSelecionado")
+            .classList
+            .add("oculto");
+
+    }
+
+    atualizarTudo();
+
+}
+
+
+/* =========================================================
+   LISTA DE QDC
+========================================================= */
 
 function renderLocais(){
 
@@ -1307,112 +1779,136 @@ function renderLocais(){
     if(!locais.length){
 
         area.innerHTML =
-            `<div class="info">
-                Nenhum local/QDC cadastrado.
-             </div>`;
+            '<div class="vazio">' +
+            'Nenhum QDC cadastrado.' +
+            '</div>';
 
         return;
+
     }
 
-    area.innerHTML = locais.map(local => {
+    area.innerHTML =
+        locais
+        .slice()
+        .sort((a,b)=>
+            String(a.codigo || "")
+            .localeCompare(
+                String(b.codigo || "")
+            )
+        )
+        .map(local=>{
 
-        const qtd =
-            ordens.filter(x => x.localId === local.id).length;
+            const qtd =
+                ordens.filter(
+                    x =>
+                    x.localId === local.id
+                ).length;
 
-        const selecionado =
-            local.id === localSelecionado
-            ? "selecionado"
-            : "";
+            return `
 
-        return `
-
-        <div class="local ${selecionado}">
-
-            <div class="local-topo">
+            <div class="local">
 
                 <div>
+                    <strong>
+                        ${esc(local.codigo || "-")}
+                    </strong>
 
-                    <h3>
-                        ${esc(local.codigo)}
-                        — ${esc(local.nome)}
-                    </h3>
+                    <span class="badge">
+                        ${esc(local.sistema || "-")}
+                    </span>
+                </div>
 
-                    <div class="mini">
-                        📍 ${esc(local.localizacao || "Não informado")}
-                    </div>
+                <div style="margin-top:7px;">
+                    ${esc(local.nome || "-")}
+                </div>
 
-                    <div class="mini">
-                        ⚡ ${esc(local.tensao || "Tensão não informada")}
-                        |
-                        ${esc(local.sistema || "Sistema não informado")}
-                    </div>
+                <div class="pequeno">
+                    Localização:
+                    ${esc(local.localizacao || "-")}
+                    |
+                    Tensão:
+                    ${esc(local.tensao || "-")}
+                    |
+                    O.S.:
+                    ${qtd}
+                </div>
+
+                <div class="botoes">
+
+                    <button class="btn"
+                            onclick="selecionarLocal('${escAttr(local.id)}')">
+                        📂 Abrir
+                    </button>
+
+                    ${
+                        podeEditar()
+                        ?
+                        `
+                        <button class="btn btn-laranja"
+                                onclick="editarLocal('${escAttr(local.id)}')">
+                            ✏️ Alterar
+                        </button>
+
+                        <button class="btn btn-preto"
+                                onclick="imprimirLocal('${escAttr(local.id)}')">
+                            🖨️ Imprimir
+                        </button>
+                        `
+                        :
+                        `
+                        <button class="btn btn-preto"
+                                onclick="imprimirLocal('${escAttr(local.id)}')">
+                            🖨️ Imprimir
+                        </button>
+                        `
+                    }
+
+                    ${
+                        podeExcluir()
+                        ?
+                        `
+                        <button class="btn btn-vermelho"
+                                onclick="excluirLocal('${escAttr(local.id)}')">
+                            🗑️ Excluir
+                        </button>
+                        `
+                        :
+                        ""
+                    }
 
                 </div>
 
-                <span class="badge">
-                    ${qtd} O.S.
-                </span>
-
             </div>
 
-            <div class="botoes">
+            `;
 
-                <button
-                    class="btn"
-                    onclick="selecionarLocal('${local.id}')">
-                    Abrir
-                </button>
-
-                ${
-                    podeEditar()
-                    ?
-                    `<button
-                        class="btn-warning"
-                        onclick="editarLocal('${local.id}')">
-                        Editar
-                    </button>`
-                    :""
-                }
-
-                ${
-                    podeExcluir()
-                    ?
-                    `<button
-                        class="btn-danger"
-                        onclick="excluirLocal('${local.id}')">
-                        Excluir
-                    </button>`
-                    :""
-                }
-
-            </div>
-
-        </div>
-
-        `;
-
-    }).join("");
+        })
+        .join("");
 
 }
 
 
-/* ============================================================
-   SELECIONAR LOCAL
-============================================================ */
-
 function selecionarLocal(id){
+
+    const local =
+        locais.find(
+            x => x.id === id
+        );
+
+    if(!local) return;
 
     localSelecionado = id;
 
-    renderLocais();
     renderLocalSelecionado();
+
+    atualizarHistorico();
+
+    atualizarSelectComparacao();
 
     document
         .getElementById("areaLocalSelecionado")
-        .classList.remove("oculto");
-
-    atualizarHistorico();
-    atualizarSelectComparacao();
+        .classList
+        .remove("oculto");
 
     document
         .getElementById("areaLocalSelecionado")
@@ -1425,248 +1921,139 @@ function selecionarLocal(id){
 
 function renderLocalSelecionado(){
 
-    const local =
-        locais.find(x => x.id === localSelecionado);
-
-    if(!local) return;
-
-    const qtd =
-        ordens.filter(x => x.localId === local.id).length;
-
-    document.getElementById(
-        "dadosLocalSelecionado"
-    ).innerHTML = `
-
-        <div class="grid">
-
-            <div>
-                <b>Código</b><br>
-                ${esc(local.codigo)}
-            </div>
-
-            <div>
-                <b>Nome</b><br>
-                ${esc(local.nome)}
-            </div>
-
-            <div>
-                <b>Tensão</b><br>
-                ${esc(local.tensao || "-")}
-            </div>
-
-            <div>
-                <b>Sistema</b><br>
-                ${esc(local.sistema || "-")}
-            </div>
-
-            <div>
-                <b>Localização</b><br>
-                ${esc(local.localizacao || "-")}
-            </div>
-
-            <div>
-                <b>Origem</b><br>
-                ${esc(local.origem || "-")}
-            </div>
-
-        </div>
-
-        <div style="margin-top:12px">
-
-            <b>Principais cargas:</b><br>
-            ${esc(local.cargas || "-")}
-
-        </div>
-
-        <div style="margin-top:10px">
-
-            <b>Descrição:</b><br>
-            ${esc(local.descricao || "-")}
-
-        </div>
-
-        <div style="margin-top:10px">
-
-            <span class="badge">
-                ${qtd} O.S. / análises armazenadas
-            </span>
-
-        </div>
-    `;
-
-}
-
-
-/* ============================================================
-   EDITAR LOCAL
-============================================================ */
-
-function editarLocal(id){
-
-    if(!podeEditar()){
-        alert("Seu perfil não permite editar.");
-        return;
-    }
-
-    if(!confirmarSenha()){
-        return;
-    }
+    if(!localSelecionado) return;
 
     const local =
-        locais.find(x => x.id === id);
-
-    if(!local) return;
-
-    document.getElementById("qdcCodigo").value =
-        local.codigo || "";
-
-    document.getElementById("qdcNome").value =
-        local.nome || "";
-
-    document.getElementById("qdcTensao").value =
-        local.tensao || "";
-
-    document.getElementById("qdcSistema").value =
-        local.sistema || "";
-
-    document.getElementById("qdcLocalizacao").value =
-        local.localizacao || "";
-
-    document.getElementById("qdcOrigem").value =
-        local.origem || "";
-
-    document.getElementById("qdcCargas").value =
-        local.cargas || "";
-
-    document.getElementById("qdcDescricao").value =
-        local.descricao || "";
-
-    locais =
-        locais.filter(x => x.id !== id);
-
-    ordens.forEach(o => {
-
-        if(o.localId === id){
-            o.localCadastro = {
-                codigo:local.codigo,
-                nome:local.nome
-            };
-        }
-
-    });
-
-    salvarDados();
-
-    atualizarTudo();
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    alert(
-        "Os dados foram carregados no cadastro. " +
-        "Após salvar, será criado um novo registro de local."
-    );
-
-}
-
-
-/* ============================================================
-   EXCLUIR LOCAL
-============================================================ */
-
-function excluirLocal(id){
-
-    if(!podeExcluir()){
-        alert("Somente o Administrador pode excluir.");
-        return;
-    }
-
-    if(!confirmarSenha()){
-        return;
-    }
-
-    const local =
-        locais.find(x => x.id === id);
+        locais.find(
+            x => x.id === localSelecionado
+        );
 
     if(!local) return;
 
     const quantidade =
-        ordens.filter(x => x.localId === id).length;
+        ordens.filter(
+            x =>
+            x.localId === local.id
+        ).length;
 
-    const confirma =
-        confirm(
-            "Excluir o local " +
-            local.codigo +
-            "?\n\n" +
-            "Também serão excluídas " +
-            quantidade +
-            " O.S./análises relacionadas."
-        );
+    document
+        .getElementById("dadosLocalSelecionado")
+        .innerHTML = `
 
-    if(!confirma) return;
+        <div class="grid">
 
-    locais =
-        locais.filter(x => x.id !== id);
+            <div>
+                <label>Código</label>
+                <div>${esc(local.codigo || "-")}</div>
+            </div>
 
-    ordens =
-        ordens.filter(x => x.localId !== id);
+            <div>
+                <label>Nome</label>
+                <div>${esc(local.nome || "-")}</div>
+            </div>
 
-    if(localSelecionado === id){
-        localSelecionado = null;
+            <div>
+                <label>Tensão</label>
+                <div>${esc(local.tensao || "-")}</div>
+            </div>
 
-        document
-            .getElementById("areaLocalSelecionado")
-            .classList.add("oculto");
-    }
+            <div>
+                <label>Sistema</label>
+                <div>${esc(local.sistema || "-")}</div>
+            </div>
 
-    salvarDados();
-    atualizarTudo();
+            <div>
+                <label>Localização</label>
+                <div>${esc(local.localizacao || "-")}</div>
+            </div>
+
+            <div>
+                <label>Origem</label>
+                <div>${esc(local.origem || "-")}</div>
+            </div>
+
+            <div>
+                <label>Cargas</label>
+                <div>${esc(local.cargas || "-")}</div>
+            </div>
+
+            <div>
+                <label>Quantidade de análises</label>
+                <div>${quantidade}</div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <label>Descrição</label>
+
+        <div>
+            ${nl2br(esc(local.descricao || "-"))}
+        </div>
+
+        `;
 
 }
 
 
-/* ============================================================
-   FORMULÁRIO O.S.
-============================================================ */
+/* =========================================================
+   O.S.
+========================================================= */
 
 function mostrarFormularioOS(){
 
     if(!podeEditar()){
+
         alert(
-            "Visitante possui acesso somente para visualização."
+            "Seu perfil não possui permissão para criar O.S."
         );
+
         return;
+
     }
 
     if(!localSelecionado){
-        alert("Selecione um local primeiro.");
+
+        alert(
+            "Selecione um QDC primeiro."
+        );
+
         return;
+
     }
 
     limparFormularioOS();
 
-    const agora = new Date();
-
-    document.getElementById("osData").value =
-        agora.toISOString().substring(0,10);
-
-    document.getElementById("osHora").value =
-        agora.toTimeString().substring(0,5);
-
-    document.getElementById("osResponsavel").value =
-        usuario.nome;
-
-    document.getElementById("tituloFormOS").textContent =
-        "📝 Nova O.S.";
+    const agora =
+        new Date();
 
     document
-        .getElementById("formOS")
-        .classList.remove("oculto");
+        .getElementById("osData")
+        .value =
+        agora.toISOString()
+        .slice(0,10);
 
     document
-        .getElementById("formOS")
+        .getElementById("osHora")
+        .value =
+        agora.toTimeString()
+        .slice(0,5);
+
+    document
+        .getElementById("osResponsavel")
+        .value =
+        usuario
+        ? usuario.nome
+        : "";
+
+    document
+        .getElementById("areaFormularioOS")
+        .classList
+        .remove("oculto");
+
+    document
+        .getElementById("areaFormularioOS")
         .scrollIntoView({
             behavior:"smooth"
         });
@@ -1674,82 +2061,163 @@ function mostrarFormularioOS(){
 }
 
 
-function cancelarOS(){
-
-    limparFormularioOS();
+function fecharFormularioOS(){
 
     document
-        .getElementById("formOS")
-        .classList.add("oculto");
+        .getElementById("areaFormularioOS")
+        .classList
+        .add("oculto");
 
 }
 
 
 function limparFormularioOS(){
 
-    document.getElementById("osIdEdicao").value="";
+    document
+        .getElementById("osIdEdicao")
+        .value = "";
 
-    document.getElementById("osData").value="";
-    document.getElementById("osHora").value="";
-    document.getElementById("osResponsavel").value="";
-    document.getElementById("osTipo").value="Inspeção";
-    document.getElementById("osDisjuntor").value="";
-    document.getElementById("osFrequencia").value="";
-    document.getElementById("osTemperatura").value="";
-    document.getElementById("osSituacao").value="NORMAL";
+    const ids = [
 
-    document.getElementById("vAB").value="";
-    document.getElementById("vBC").value="";
-    document.getElementById("vCA").value="";
+        "osData",
+        "osHora",
+        "osResponsavel",
+        "osDisjuntor",
+        "osFrequencia",
+        "osTemperatura",
+        "osObservacoes"
 
-    document.getElementById("iA").value="";
-    document.getElementById("iB").value="";
-    document.getElementById("iC").value="";
+    ];
 
-    document.getElementById("osObservacoes").value="";
+    ids.forEach(id=>{
 
-    document.querySelectorAll(
-        "#formOS input[type=checkbox]"
-    ).forEach(x => x.checked=false);
+        document
+            .getElementById(id)
+            .value = "";
+
+    });
+
+    document
+        .getElementById("osTipo")
+        .value = "";
+
+    document
+        .getElementById("osSituacao")
+        .value = "";
+
+    [
+
+        "vAB",
+        "vBC",
+        "vCA",
+        "iA",
+        "iB",
+        "iC"
+
+    ].forEach(id=>{
+
+        document
+            .getElementById(id)
+            .value = "";
+
+    });
+
+    [
+
+        "checkDisjuntor",
+        "checkBarramento",
+        "checkConexoes",
+        "checkAterramento",
+        "checkDR",
+        "checkDPS",
+        "checkIdentificacao",
+        "checkLimpeza",
+        "checkAquecimento"
+
+    ].forEach(id=>{
+
+        document
+            .getElementById(id)
+            .checked = false;
+
+    });
 
     calcularMedicoes();
 
 }
 
 
-/* ============================================================
+/* =========================================================
    CÁLCULOS
-============================================================ */
+========================================================= */
+
+function numero(v){
+
+    if(
+        v === null ||
+        v === undefined ||
+        v === ""
+    ){
+        return null;
+    }
+
+    const n =
+        Number(
+            String(v)
+            .replace(",",".")
+        );
+
+    return Number.isFinite(n)
+        ? n
+        : null;
+
+}
+
 
 function calcularDados(a,b,c){
 
     const valores =
-        [a,b,c].filter(
-            x => Number.isFinite(x)
+        [a,b,c]
+        .map(numero)
+        .filter(
+            x => x !== null
         );
 
     if(valores.length !== 3){
+
         return null;
+
     }
 
     const media =
-        (a+b+c)/3;
+        valores.reduce(
+            (s,v)=>s+v,
+            0
+        ) / 3;
 
     const desvios =
-        valores.map(x => Math.abs(x-media));
+        valores.map(
+            v =>
+            Math.abs(
+                v - media
+            )
+        );
 
     const maior =
         Math.max(...desvios);
 
     const percentual =
         media !== 0
-        ? (maior/media)*100
+        ? (maior / media) * 100
         : 0;
 
     return {
+
+        valores,
         media,
         maior,
         percentual
+
     };
 
 }
@@ -1757,149 +2225,161 @@ function calcularDados(a,b,c){
 
 function calcularMedicoes(){
 
-    const a =
-        parseFloat(document.getElementById("vAB").value);
-
-    const b =
-        parseFloat(document.getElementById("vBC").value);
-
-    const c =
-        parseFloat(document.getElementById("vCA").value);
-
     const tensao =
-        calcularDados(a,b,c);
+        calcularDados(
+            document.getElementById("vAB").value,
+            document.getElementById("vBC").value,
+            document.getElementById("vCA").value
+        );
 
     if(tensao){
 
-        document.getElementById("tensaoMedia")
+        document
+            .getElementById("tensaoMedia")
             .textContent =
-            tensao.media.toFixed(2)+" V";
+            tensao.media.toFixed(2) +
+            " V";
 
-        document.getElementById("maiorDesvio")
+        document
+            .getElementById("maiorDesvio")
             .textContent =
-            tensao.maior.toFixed(2)+" V";
+            tensao.maior.toFixed(2) +
+            " V";
 
-        document.getElementById("desbalTensao")
+        document
+            .getElementById("desbalTensao")
             .textContent =
-            tensao.percentual.toFixed(2)+" %";
+            tensao.percentual.toFixed(2) +
+            " %";
+
+        const el =
+            document
+            .getElementById("desbalTensao");
+
+        el.className =
+            tensao.percentual <= 2
+            ? "ok"
+            : "alerta";
 
     }else{
 
-        document.getElementById("tensaoMedia")
-            .textContent="-";
+        document
+            .getElementById("tensaoMedia")
+            .textContent = "-";
 
-        document.getElementById("maiorDesvio")
-            .textContent="-";
+        document
+            .getElementById("maiorDesvio")
+            .textContent = "-";
 
-        document.getElementById("desbalTensao")
-            .textContent="-";
+        document
+            .getElementById("desbalTensao")
+            .textContent = "-";
+
     }
 
 
-    const ia =
-        parseFloat(document.getElementById("iA").value);
-
-    const ib =
-        parseFloat(document.getElementById("iB").value);
-
-    const ic =
-        parseFloat(document.getElementById("iC").value);
-
     const corrente =
-        calcularDados(ia,ib,ic);
+        calcularDados(
+            document.getElementById("iA").value,
+            document.getElementById("iB").value,
+            document.getElementById("iC").value
+        );
 
     if(corrente){
 
-        document.getElementById("correnteMedia")
+        document
+            .getElementById("correnteMedia")
             .textContent =
-            corrente.media.toFixed(2)+" A";
+            corrente.media.toFixed(2) +
+            " A";
 
-        document.getElementById("maiorDesvioCorrente")
+        document
+            .getElementById("maiorDesvioCorrente")
             .textContent =
-            corrente.maior.toFixed(2)+" A";
+            corrente.maior.toFixed(2) +
+            " A";
 
-        document.getElementById("desbalCorrente")
+        document
+            .getElementById("desbalCorrente")
             .textContent =
-            corrente.percentual.toFixed(2)+" %";
+            corrente.percentual.toFixed(2) +
+            " %";
+
+        const el =
+            document
+            .getElementById("desbalCorrente");
+
+        el.className =
+            corrente.percentual <= 2
+            ? "ok"
+            : "alerta";
 
     }else{
 
-        document.getElementById("correnteMedia")
-            .textContent="-";
+        document
+            .getElementById("correnteMedia")
+            .textContent = "-";
 
-        document.getElementById("maiorDesvioCorrente")
-            .textContent="-";
+        document
+            .getElementById("maiorDesvioCorrente")
+            .textContent = "-";
 
-        document.getElementById("desbalCorrente")
-            .textContent="-";
+        document
+            .getElementById("desbalCorrente")
+            .textContent = "-";
 
     }
 
 }
 
 
-/* ============================================================
+/* =========================================================
    SALVAR O.S.
-============================================================ */
+========================================================= */
 
 function salvarOS(){
 
     if(!podeEditar()){
-        alert("Seu perfil não permite criar O.S.");
+
+        alert(
+            "Seu perfil não possui permissão."
+        );
+
         return;
+
     }
 
     if(!localSelecionado){
-        alert("Nenhum local selecionado.");
+
+        alert(
+            "Nenhum QDC selecionado."
+        );
+
         return;
-    }
-
-    const idEdicao =
-        document.getElementById("osIdEdicao").value;
-
-    let ordemExistente = null;
-
-    if(idEdicao){
-
-        ordemExistente =
-            ordens.find(x => x.id === idEdicao);
-
-        if(!ordemExistente){
-            alert("O.S. não encontrada.");
-            return;
-        }
-
-        if(!confirmarSenha()){
-            return;
-        }
 
     }
 
+    const local =
+        locais.find(
+            x =>
+            x.id === localSelecionado
+        );
 
-    const a =
-        parseFloat(document.getElementById("vAB").value);
-
-    const b =
-        parseFloat(document.getElementById("vBC").value);
-
-    const c =
-        parseFloat(document.getElementById("vCA").value);
-
-    const ia =
-        parseFloat(document.getElementById("iA").value);
-
-    const ib =
-        parseFloat(document.getElementById("iB").value);
-
-    const ic =
-        parseFloat(document.getElementById("iC").value);
-
+    if(!local) return;
 
     const tensao =
-        calcularDados(a,b,c);
+        calcularDados(
+            document.getElementById("vAB").value,
+            document.getElementById("vBC").value,
+            document.getElementById("vCA").value
+        );
 
     const corrente =
-        calcularDados(ia,ib,ic);
+        calcularDados(
+            document.getElementById("iA").value,
+            document.getElementById("iB").value,
+            document.getElementById("iC").value
+        );
 
 
     const dados = {
@@ -1911,16 +2391,16 @@ function salvarOS(){
             document.getElementById("osHora").value,
 
         responsavel:
-            document.getElementById("osResponsavel").value,
+            document.getElementById("osResponsavel").value.trim(),
 
         tipo:
             document.getElementById("osTipo").value,
 
         disjuntor:
-            document.getElementById("osDisjuntor").value,
+            document.getElementById("osDisjuntor").value.trim(),
 
         frequencia:
-            document.getElementById("osFrequencia").value,
+            document.getElementById("osFrequencia").value.trim(),
 
         temperatura:
             document.getElementById("osTemperatura").value,
@@ -1928,45 +2408,47 @@ function salvarOS(){
         situacao:
             document.getElementById("osSituacao").value,
 
-        tensao:{
+        tensoes:{
+            AB:
+                numero(
+                    document.getElementById("vAB").value
+                ),
 
-            AB:a,
-            BC:b,
-            CA:c,
+            BC:
+                numero(
+                    document.getElementById("vBC").value
+                ),
 
-            media:tensao
-                ? tensao.media
-                : null,
+            CA:
+                numero(
+                    document.getElementById("vCA").value
+                ),
 
-            maiorDesvio:tensao
-                ? tensao.maior
-                : null,
+            calculo:tensao
 
-            desbalanceamento:tensao
-                ? tensao.percentual
-                : null
         },
 
-        corrente:{
+        correntes:{
+            A:
+                numero(
+                    document.getElementById("iA").value
+                ),
 
-            A:ia,
-            B:ib,
-            C:ic,
+            B:
+                numero(
+                    document.getElementById("iB").value
+                ),
 
-            media:corrente
-                ? corrente.media
-                : null,
+            C:
+                numero(
+                    document.getElementById("iC").value
+                ),
 
-            maiorDesvio:corrente
-                ? corrente.maior
-                : null,
+            calculo:corrente
 
-            desbalanceamento:corrente
-                ? corrente.percentual
-                : null
         },
 
-        inspecao:{
+        inspeção:{
 
             disjuntor:
                 document.getElementById("checkDisjuntor").checked,
@@ -1998,185 +2480,272 @@ function salvarOS(){
         },
 
         observacoes:
-            document.getElementById("osObservacoes").value
+            document
+            .getElementById("osObservacoes")
+            .value,
+
+        localCadastro:{
+            ...local
+        }
 
     };
 
 
+    const idEdicao =
+        document
+        .getElementById("osIdEdicao")
+        .value;
+
+
+    /* ALTERAÇÃO */
+
     if(idEdicao){
 
-        Object.assign(
-            ordemExistente,
-            dados
-        );
+        const indice =
+            ordens.findIndex(
+                x =>
+                x.id === idEdicao
+            );
 
-        ordemExistente.atualizadoEm =
-            new Date().toISOString();
+        if(indice === -1){
+
+            alert(
+                "O.S. não encontrada."
+            );
+
+            return;
+
+        }
+
+        ordens[indice] = {
+
+            ...ordens[indice],
+
+            ...dados,
+
+            alteradoEm:
+                new Date().toISOString()
+
+        };
+
+        salvarDados();
 
         alert(
-            "O.S. atualizada com sucesso."
+            "O.S. alterada com sucesso."
         );
 
     }else{
 
-        const numero =
-            proximoNumeroOS();
+        const novaOS = {
 
-        const local =
-            locais.find(x => x.id === localSelecionado);
+            id:
+                Date.now().toString(),
 
-        const nova = {
+            numero:
+                proximoNumeroOS(),
 
-            id:Date.now().toString(),
+            localId:
+                local.id,
 
-            numeroOS:numero,
+            criadoPor:
+                usuario
+                ? usuario.nome
+                : "",
 
-            localId:localSelecionado,
-
-            localCadastro:{
-
-                codigo:local.codigo,
-
-                nome:local.nome
-
-            },
-
-            criadoPor:usuario.nome,
-
-            criadoEm:new Date().toISOString(),
+            criadoEm:
+                new Date().toISOString(),
 
             ...dados
 
         };
 
-        ordens.push(nova);
+        ordens.push(novaOS);
+
+        salvarDados();
 
         alert(
-            "O.S. " +
-            numero +
-            " criada e armazenada no localStorage."
+            "O.S. salva com sucesso."
         );
 
     }
 
-
-    salvarDados();
-
-    cancelarOS();
+    fecharFormularioOS();
 
     atualizarTudo();
 
 }
 
 
-/* ============================================================
-   NUMERAÇÃO DA O.S.
-============================================================ */
+/* =========================================================
+   NUMERAÇÃO O.S.
+========================================================= */
 
 function proximoNumeroOS(){
 
     let maior = 0;
 
-    ordens.forEach(o => {
+    ordens.forEach(os=>{
 
         const n =
             parseInt(
-                String(o.numeroOS || "")
-                .replace(/\D/g,"")
+                String(os.numero || "")
+                .replace(/\D/g,""),
+                10
             );
 
-        if(!isNaN(n) && n > maior){
-            maior=n;
+        if(
+            Number.isFinite(n) &&
+            n > maior
+        ){
+            maior = n;
         }
 
     });
 
-    return "OS-" +
-        String(maior+1).padStart(4,"0");
+    return (
+        "OS-" +
+        String(maior + 1)
+        .padStart(4,"0")
+    );
 
 }
 
 
-/* ============================================================
+/* =========================================================
    HISTÓRICO
-============================================================ */
+========================================================= */
 
 function atualizarHistorico(){
 
-    if(!localSelecionado) return;
+    const area =
+        document.getElementById("historico");
+
+    if(!localSelecionado){
+
+        area.innerHTML =
+            '<div class="vazio">' +
+            'Selecione um QDC.' +
+            '</div>';
+
+        return;
+
+    }
 
     const lista =
         ordens
-        .filter(x => x.localId === localSelecionado)
+        .filter(
+            x =>
+            x.localId === localSelecionado
+        )
         .sort(
-            (a,b) =>
-            new Date(b.data+"T"+(b.hora||"00:00")) -
-            new Date(a.data+"T"+(a.hora||"00:00"))
+            (a,b)=>
+            String(b.data || "")
+            .localeCompare(
+                String(a.data || "")
+            ) ||
+            String(b.hora || "")
+            .localeCompare(
+                String(a.hora || "")
+            )
         );
-
-    const area =
-        document.getElementById("listaOS");
 
     if(!lista.length){
 
         area.innerHTML =
-            `<div class="info">
-                Nenhuma O.S. registrada para este local.
-             </div>`;
+            '<div class="vazio">' +
+            'Nenhuma análise registrada para este QDC.' +
+            '</div>';
 
         return;
+
     }
 
-
     area.innerHTML =
-        lista.map(renderOS).join("");
+        lista
+        .map(renderOS)
+        .join("");
 
 }
 
 
-function renderOS(o){
+function renderOS(os){
 
-    const statusClass =
-        o.situacao === "CRÍTICO"
-        ? "status-critico"
+    const tensao =
+        os.tensoes &&
+        os.tensoes.calculo
+        ?
+        os.tensoes.calculo
         :
-        o.situacao === "ATENÇÃO"
-        ? "status-atencao"
-        : "status-normal";
+        null;
 
+    const corrente =
+        os.correntes &&
+        os.correntes.calculo
+        ?
+        os.correntes.calculo
+        :
+        null;
 
     return `
 
     <div class="os">
 
-        <div class="os-topo">
+        <div class="os-cabecalho">
 
             <div>
+                <strong>
+                    ${esc(os.numero || "O.S.")}
+                </strong>
 
-                <div class="os-numero">
-                    ${esc(o.numeroOS)}
+                <div class="pequeno">
+                    ${formatarData(os.data)}
+                    ${os.hora ? " - " + esc(os.hora) : ""}
                 </div>
-
-                <div class="mini">
-                    ${formatarData(o.data)}
-                    ${o.hora ? " — "+esc(o.hora) : ""}
-                </div>
-
-                <div class="mini">
-                    Responsável:
-                    ${esc(o.responsavel || "-")}
-                </div>
-
-                <div class="mini">
-                    Tipo:
-                    ${esc(o.tipo || "-")}
-                </div>
-
             </div>
 
-            <span class="badge ${statusClass}">
-                ${esc(o.situacao || "-")}
-            </span>
+            <div>
+                <span class="badge">
+                    ${esc(os.tipo || "-")}
+                </span>
+
+                <span class="badge">
+                    ${esc(os.situacao || "-")}
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div>
+                <label>Responsável</label>
+                <div>${esc(os.responsavel || "-")}</div>
+            </div>
+
+            <div>
+                <label>Disjuntor</label>
+                <div>${esc(os.disjuntor || "-")}</div>
+            </div>
+
+            <div>
+                <label>Frequência</label>
+                <div>${esc(os.frequencia || "-")}</div>
+            </div>
+
+            <div>
+                <label>Temperatura</label>
+                <div>
+                    ${os.temperatura !== "" &&
+                      os.temperatura !== null &&
+                      os.temperatura !== undefined
+                      ?
+                      esc(os.temperatura) + " °C"
+                      :
+                      "-"
+                    }
+                </div>
+            </div>
 
         </div>
 
@@ -2184,47 +2753,67 @@ function renderOS(o){
         <div class="resultados">
 
             <div class="resultado">
+
+                <span>Desbal. tensão</span>
+
+                <strong>
+                    ${
+                        tensao
+                        ?
+                        tensao.percentual.toFixed(2) + " %"
+                        :
+                        "-"
+                    }
+                </strong>
+
+            </div>
+
+            <div class="resultado">
+
+                <span>Desbal. corrente</span>
+
+                <strong>
+                    ${
+                        corrente
+                        ?
+                        corrente.percentual.toFixed(2) + " %"
+                        :
+                        "-"
+                    }
+                </strong>
+
+            </div>
+
+            <div class="resultado">
+
                 <span>Tensão média</span>
+
                 <strong>
                     ${
-                        num(o.tensao?.media)
-                        ? o.tensao.media.toFixed(2)+" V"
-                        : "-"
+                        tensao
+                        ?
+                        tensao.media.toFixed(2) + " V"
+                        :
+                        "-"
                     }
                 </strong>
+
             </div>
 
             <div class="resultado">
-                <span>Desb. tensão</span>
-                <strong>
-                    ${
-                        num(o.tensao?.desbalanceamento)
-                        ? o.tensao.desbalanceamento.toFixed(2)+" %"
-                        : "-"
-                    }
-                </strong>
-            </div>
 
-            <div class="resultado">
                 <span>Corrente média</span>
-                <strong>
-                    ${
-                        num(o.corrente?.media)
-                        ? o.corrente.media.toFixed(2)+" A"
-                        : "-"
-                    }
-                </strong>
-            </div>
 
-            <div class="resultado">
-                <span>Desb. corrente</span>
                 <strong>
                     ${
-                        num(o.corrente?.desbalanceamento)
-                        ? o.corrente.desbalanceamento.toFixed(2)+" %"
-                        : "-"
+                        corrente
+                        ?
+                        corrente.media.toFixed(2) + " A"
+                        :
+                        "-"
                     }
                 </strong>
+
             </div>
 
         </div>
@@ -2232,39 +2821,41 @@ function renderOS(o){
 
         <div class="botoes">
 
-            <button
-                class="btn"
-                onclick="visualizarOS('${o.id}')">
-                👁 Ver
+            <button class="btn"
+                    onclick="visualizarOS('${escAttr(os.id)}')">
+                👁️ Visualizar
+            </button>
+
+            <button class="btn btn-preto"
+                    onclick="imprimirOS('${escAttr(os.id)}')">
+                🖨️ Imprimir
             </button>
 
             ${
                 podeEditar()
                 ?
-                `<button
-                    class="btn-warning"
-                    onclick="editarOS('${o.id}')">
-                    Editar
-                </button>`
-                :""
+                `
+                <button class="btn btn-laranja"
+                        onclick="editarOS('${escAttr(os.id)}')">
+                    ✏️ Alterar
+                </button>
+                `
+                :
+                ""
             }
 
             ${
                 podeExcluir()
                 ?
-                `<button
-                    class="btn-danger"
-                    onclick="excluirOS('${o.id}')">
-                    Excluir
-                </button>`
-                :""
+                `
+                <button class="btn btn-vermelho"
+                        onclick="excluirOS('${escAttr(os.id)}')">
+                    🗑️ Excluir
+                </button>
+                `
+                :
+                ""
             }
-
-            <button
-                class="btn-light"
-                onclick="imprimirOS('${o.id}')">
-                🖨 Imprimir
-            </button>
 
         </div>
 
@@ -2275,120 +2866,198 @@ function renderOS(o){
 }
 
 
-/* ============================================================
+/* =========================================================
    EDITAR O.S.
-============================================================ */
+========================================================= */
 
 function editarOS(id){
 
     if(!podeEditar()){
-        alert("Sem permissão.");
+
+        alert(
+            "Seu perfil não possui permissão."
+        );
+
         return;
+
     }
 
-    if(!confirmarSenha()){
-        return;
-    }
+    const os =
+        ordens.find(
+            x => x.id === id
+        );
 
-    const o =
-        ordens.find(x => x.id === id);
+    if(!os) return;
 
-    if(!o) return;
+    document
+        .getElementById("osIdEdicao")
+        .value =
+        os.id;
+
+    document
+        .getElementById("osData")
+        .value =
+        os.data || "";
+
+    document
+        .getElementById("osHora")
+        .value =
+        os.hora || "";
+
+    document
+        .getElementById("osResponsavel")
+        .value =
+        os.responsavel || "";
+
+    document
+        .getElementById("osTipo")
+        .value =
+        os.tipo || "";
+
+    document
+        .getElementById("osDisjuntor")
+        .value =
+        os.disjuntor || "";
+
+    document
+        .getElementById("osFrequencia")
+        .value =
+        os.frequencia || "";
+
+    document
+        .getElementById("osTemperatura")
+        .value =
+        os.temperatura || "";
+
+    document
+        .getElementById("osSituacao")
+        .value =
+        os.situacao || "";
+
+    document
+        .getElementById("vAB")
+        .value =
+        os.tensoes &&
+        os.tensoes.AB !== null
+        ?
+        os.tensoes.AB
+        :
+        "";
+
+    document
+        .getElementById("vBC")
+        .value =
+        os.tensoes &&
+        os.tensoes.BC !== null
+        ?
+        os.tensoes.BC
+        :
+        "";
+
+    document
+        .getElementById("vCA")
+        .value =
+        os.tensoes &&
+        os.tensoes.CA !== null
+        ?
+        os.tensoes.CA
+        :
+        "";
+
+    document
+        .getElementById("iA")
+        .value =
+        os.correntes &&
+        os.correntes.A !== null
+        ?
+        os.correntes.A
+        :
+        "";
+
+    document
+        .getElementById("iB")
+        .value =
+        os.correntes &&
+        os.correntes.B !== null
+        ?
+        os.correntes.B
+        :
+        "";
+
+    document
+        .getElementById("iC")
+        .value =
+        os.correntes &&
+        os.correntes.C !== null
+        ?
+        os.correntes.C
+        :
+        "";
 
 
-    document.getElementById("osIdEdicao").value =
-        o.id;
-
-    document.getElementById("osData").value =
-        o.data || "";
-
-    document.getElementById("osHora").value =
-        o.hora || "";
-
-    document.getElementById("osResponsavel").value =
-        o.responsavel || "";
-
-    document.getElementById("osTipo").value =
-        o.tipo || "Inspeção";
-
-    document.getElementById("osDisjuntor").value =
-        o.disjuntor || "";
-
-    document.getElementById("osFrequencia").value =
-        o.frequencia || "";
-
-    document.getElementById("osTemperatura").value =
-        o.temperatura || "";
-
-    document.getElementById("osSituacao").value =
-        o.situacao || "NORMAL";
+    const ins =
+        os.inspeção || {};
 
 
-    document.getElementById("vAB").value =
-        valorInput(o.tensao?.AB);
-
-    document.getElementById("vBC").value =
-        valorInput(o.tensao?.BC);
-
-    document.getElementById("vCA").value =
-        valorInput(o.tensao?.CA);
-
-
-    document.getElementById("iA").value =
-        valorInput(o.corrente?.A);
-
-    document.getElementById("iB").value =
-        valorInput(o.corrente?.B);
-
-    document.getElementById("iC").value =
-        valorInput(o.corrente?.C);
-
-
-    document.getElementById("osObservacoes").value =
-        o.observacoes || "";
-
-
-    const ins = o.inspecao || {};
-
-    document.getElementById("checkDisjuntor").checked =
+    document
+        .getElementById("checkDisjuntor")
+        .checked =
         !!ins.disjuntor;
 
-    document.getElementById("checkBarramento").checked =
+    document
+        .getElementById("checkBarramento")
+        .checked =
         !!ins.barramento;
 
-    document.getElementById("checkConexoes").checked =
+    document
+        .getElementById("checkConexoes")
+        .checked =
         !!ins.conexoes;
 
-    document.getElementById("checkAterramento").checked =
+    document
+        .getElementById("checkAterramento")
+        .checked =
         !!ins.aterramento;
 
-    document.getElementById("checkDR").checked =
+    document
+        .getElementById("checkDR")
+        .checked =
         !!ins.DR;
 
-    document.getElementById("checkDPS").checked =
+    document
+        .getElementById("checkDPS")
+        .checked =
         !!ins.DPS;
 
-    document.getElementById("checkIdentificacao").checked =
+    document
+        .getElementById("checkIdentificacao")
+        .checked =
         !!ins.identificacao;
 
-    document.getElementById("checkLimpeza").checked =
+    document
+        .getElementById("checkLimpeza")
+        .checked =
         !!ins.limpeza;
 
-    document.getElementById("checkAquecimento").checked =
+    document
+        .getElementById("checkAquecimento")
+        .checked =
         !!ins.aquecimento;
 
+    document
+        .getElementById("osObservacoes")
+        .value =
+        os.observacoes || "";
 
     calcularMedicoes();
 
-    document.getElementById("tituloFormOS").textContent =
-        "✏️ Editar " + o.numeroOS;
+    document
+        .getElementById("areaFormularioOS")
+        .classList
+        .remove("oculto");
 
     document
-        .getElementById("formOS")
-        .classList.remove("oculto");
-
-    document
-        .getElementById("formOS")
+        .getElementById("areaFormularioOS")
         .scrollIntoView({
             behavior:"smooth"
         });
@@ -2396,36 +3065,45 @@ function editarOS(id){
 }
 
 
-/* ============================================================
+/* =========================================================
    EXCLUIR O.S.
-============================================================ */
+========================================================= */
 
 function excluirOS(id){
 
     if(!podeExcluir()){
-        alert("Somente o Administrador pode excluir.");
+
+        alert(
+            "Somente o Administrador pode excluir."
+        );
+
         return;
+
     }
 
-    if(!confirmarSenha()){
+    const senha =
+        prompt(
+            "Digite a senha de administrador:"
+        );
+
+    if(senha !== "1234"){
+
+        alert("Senha incorreta.");
         return;
+
     }
 
-    const o =
-        ordens.find(x => x.id === id);
+    const confirmar =
+        confirm(
+            "Deseja excluir esta O.S.?"
+        );
 
-    if(!o) return;
-
-    if(!confirm(
-        "Excluir definitivamente a " +
-        o.numeroOS +
-        "?"
-    )){
-        return;
-    }
+    if(!confirmar) return;
 
     ordens =
-        ordens.filter(x => x.id !== id);
+        ordens.filter(
+            x => x.id !== id
+        );
 
     salvarDados();
 
@@ -2434,239 +3112,1054 @@ function excluirOS(id){
 }
 
 
-/* ============================================================
+/* =========================================================
+   IMPRESSÃO - CADASTRO QDC
+========================================================= */
+
+function imprimirLocal(id){
+
+    const local =
+        locais.find(
+            x => x.id === id
+        );
+
+    if(!local){
+
+        alert(
+            "Cadastro não encontrado."
+        );
+
+        return;
+
+    }
+
+    abrirJanelaImpressao(
+        gerarHTMLCadastro(local)
+    );
+
+}
+
+
+function imprimirLocalSelecionado(){
+
+    if(!localSelecionado){
+
+        alert(
+            "Selecione um QDC."
+        );
+
+        return;
+
+    }
+
+    imprimirLocal(localSelecionado);
+
+}
+
+
+/*
+   Imprime exatamente o que está preenchido
+   no formulário, mesmo que ainda não tenha
+   sido salvo.
+*/
+function imprimirCadastroAtual(){
+
+    const dados =
+        obterDadosCadastroFormulario();
+
+    const id =
+        document
+        .getElementById("qdcIdEdicao")
+        .value;
+
+    const localSalvo =
+        id
+        ?
+        locais.find(
+            x => x.id === id
+        )
+        :
+        null;
+
+    const local = {
+
+        ...(localSalvo || {}),
+
+        ...dados,
+
+        id:
+            id ||
+            "NAO-SALVO",
+
+        criadoEm:
+            localSalvo
+            ? localSalvo.criadoEm
+            : null,
+
+        atualizadoEm:
+            new Date().toISOString()
+
+    };
+
+    abrirJanelaImpressao(
+        gerarHTMLCadastro(
+            local,
+            true
+        )
+    );
+
+}
+
+
+function gerarHTMLCadastro(
+    local,
+    emAlteracao = false
+){
+
+    const titulo =
+        emAlteracao
+        ?
+        "CADASTRO / ALTERAÇÃO DO QDC"
+        :
+        "CADASTRO DO QDC";
+
+    return `
+
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>${esc(titulo)}</title>
+
+<style>
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    margin:25px;
+    color:#111;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+h2{
+    border-bottom:2px solid #333;
+    padding-bottom:6px;
+    margin-top:25px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:12px;
+}
+
+td,th{
+    border:1px solid #aaa;
+    padding:8px;
+    vertical-align:top;
+}
+
+th{
+    width:28%;
+    background:#eee;
+    text-align:left;
+}
+
+.cabecalho{
+    text-align:center;
+    border-bottom:2px solid #222;
+    padding-bottom:12px;
+}
+
+.rodape{
+    margin-top:30px;
+    border-top:1px solid #aaa;
+    padding-top:10px;
+    font-size:11px;
+    text-align:center;
+}
+
+@media print{
+
+    body{
+        margin:15mm;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="cabecalho">
+
+    <h1>GESTÃO QDC</h1>
+
+    <div>
+        ${esc(titulo)}
+    </div>
+
+</div>
+
+
+<h2>Identificação</h2>
+
+<table>
+
+<tr>
+<th>Código</th>
+<td>${esc(local.codigo || "-")}</td>
+</tr>
+
+<tr>
+<th>Nome / Identificação</th>
+<td>${esc(local.nome || "-")}</td>
+</tr>
+
+<tr>
+<th>Tensão nominal</th>
+<td>${esc(local.tensao || "-")}</td>
+</tr>
+
+<tr>
+<th>Sistema</th>
+<td>${esc(local.sistema || "-")}</td>
+</tr>
+
+<tr>
+<th>Localização</th>
+<td>${esc(local.localizacao || "-")}</td>
+</tr>
+
+<tr>
+<th>Origem da alimentação</th>
+<td>${esc(local.origem || "-")}</td>
+</tr>
+
+<tr>
+<th>Principais circuitos / cargas</th>
+<td>${esc(local.cargas || "-")}</td>
+</tr>
+
+</table>
+
+
+<h2>Descrição</h2>
+
+<table>
+
+<tr>
+<td>
+${nl2br(esc(local.descricao || "-"))}
+</td>
+</tr>
+
+</table>
+
+
+<h2>Controle do cadastro</h2>
+
+<table>
+
+<tr>
+<th>Status da impressão</th>
+<td>
+${
+    emAlteracao
+    ?
+    "Cadastro em alteração / visualização dos dados atuais"
+    :
+    "Cadastro salvo"
+}
+</td>
+</tr>
+
+<tr>
+<th>Data do cadastro</th>
+<td>
+${formatarDataHora(local.criadoEm)}
+</td>
+</tr>
+
+<tr>
+<th>Última alteração</th>
+<td>
+${formatarDataHora(local.atualizadoEm)}
+</td>
+</tr>
+
+<tr>
+<th>Data/hora da impressão</th>
+<td>
+${formatarDataHora(new Date().toISOString())}
+</td>
+</tr>
+
+</table>
+
+
+<div class="rodape">
+
+Documento gerado pelo sistema Gestão QDC.<br>
+Os dados apresentados correspondem ao cadastro armazenado
+ou aos dados atualmente preenchidos no formulário.
+
+</div>
+
+<script>
+window.onload=function(){
+    setTimeout(function(){
+        window.print();
+    },300);
+};
+<\/script>
+
+</body>
+</html>
+
+`;
+
+}
+
+
+/* =========================================================
+   IMPRESSÃO DA O.S.
+========================================================= */
+
+function imprimirOS(id){
+
+    const os =
+        ordens.find(
+            x => x.id === id
+        );
+
+    if(!os){
+
+        alert(
+            "O.S. não encontrada."
+        );
+
+        return;
+
+    }
+
+    abrirJanelaImpressao(
+        gerarHTMLOS(os)
+    );
+
+}
+
+
+function imprimirFormularioOS(){
+
+    const id =
+        document
+        .getElementById("osIdEdicao")
+        .value;
+
+    if(id){
+
+        const os =
+            montarOSAtualDoFormulario(
+                id
+            );
+
+        abrirJanelaImpressao(
+            gerarHTMLOS(
+                os,
+                true
+            )
+        );
+
+        return;
+
+    }
+
+    const os =
+        montarOSAtualDoFormulario(
+            null
+        );
+
+    abrirJanelaImpressao(
+        gerarHTMLOS(
+            os,
+            true
+        )
+    );
+
+}
+
+
+function montarOSAtualDoFormulario(id){
+
+    const local =
+        locais.find(
+            x => x.id === localSelecionado
+        );
+
+    const tensao =
+        calcularDados(
+            document.getElementById("vAB").value,
+            document.getElementById("vBC").value,
+            document.getElementById("vCA").value
+        );
+
+    const corrente =
+        calcularDados(
+            document.getElementById("iA").value,
+            document.getElementById("iB").value,
+            document.getElementById("iC").value
+        );
+
+    return {
+
+        id:
+            id ||
+            "NAO-SALVA",
+
+        numero:
+            id
+            ?
+            (
+                ordens.find(
+                    x => x.id === id
+                ) || {}
+            ).numero || "O.S."
+            :
+            "NOVA O.S.",
+
+        localId:
+            localSelecionado,
+
+        data:
+            document.getElementById("osData").value,
+
+        hora:
+            document.getElementById("osHora").value,
+
+        responsavel:
+            document.getElementById("osResponsavel").value,
+
+        tipo:
+            document.getElementById("osTipo").value,
+
+        disjuntor:
+            document.getElementById("osDisjuntor").value,
+
+        frequencia:
+            document.getElementById("osFrequencia").value,
+
+        temperatura:
+            document.getElementById("osTemperatura").value,
+
+        situacao:
+            document.getElementById("osSituacao").value,
+
+        tensoes:{
+
+            AB:
+                numero(
+                    document.getElementById("vAB").value
+                ),
+
+            BC:
+                numero(
+                    document.getElementById("vBC").value
+                ),
+
+            CA:
+                numero(
+                    document.getElementById("vCA").value
+                ),
+
+            calculo:tensao
+
+        },
+
+        correntes:{
+
+            A:
+                numero(
+                    document.getElementById("iA").value
+                ),
+
+            B:
+                numero(
+                    document.getElementById("iB").value
+                ),
+
+            C:
+                numero(
+                    document.getElementById("iC").value
+                ),
+
+            calculo:corrente
+
+        },
+
+        inspeção:{
+
+            disjuntor:
+                document.getElementById("checkDisjuntor").checked,
+
+            barramento:
+                document.getElementById("checkBarramento").checked,
+
+            conexoes:
+                document.getElementById("checkConexoes").checked,
+
+            aterramento:
+                document.getElementById("checkAterramento").checked,
+
+            DR:
+                document.getElementById("checkDR").checked,
+
+            DPS:
+                document.getElementById("checkDPS").checked,
+
+            identificacao:
+                document.getElementById("checkIdentificacao").checked,
+
+            limpeza:
+                document.getElementById("checkLimpeza").checked,
+
+            aquecimento:
+                document.getElementById("checkAquecimento").checked
+
+        },
+
+        observacoes:
+            document.getElementById("osObservacoes").value,
+
+        localCadastro:
+            local
+            ?
+            {...local}
+            :
+            {}
+
+    };
+
+}
+
+
+function gerarHTMLOS(
+    os,
+    emAlteracao = false
+){
+
+    const local =
+        os.localCadastro || {};
+
+    const tensao =
+        os.tensoes &&
+        os.tensoes.calculo
+        ?
+        os.tensoes.calculo
+        :
+        null;
+
+    const corrente =
+        os.correntes &&
+        os.correntes.calculo
+        ?
+        os.correntes.calculo
+        :
+        null;
+
+    const ins =
+        os.inspeção || {};
+
+
+    function marca(v){
+
+        return v
+            ? "OK"
+            : "Não informado / não marcado";
+
+    }
+
+
+    return `
+
+<!doctype html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>${esc(os.numero || "O.S.")}</title>
+
+<style>
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    margin:20px;
+    color:#111;
+}
+
+h1{
+    text-align:center;
+}
+
+h2{
+    margin-top:24px;
+    border-bottom:2px solid #333;
+    padding-bottom:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th,td{
+    border:1px solid #aaa;
+    padding:7px;
+}
+
+th{
+    background:#eee;
+    text-align:left;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.caixa{
+    border:1px solid #aaa;
+    padding:10px;
+    margin-top:10px;
+}
+
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media print{
+    body{
+        margin:12mm;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>GESTÃO QDC</h1>
+
+<div style="text-align:center;">
+    ${esc(emAlteracao ? "O.S. / ANÁLISE EM ALTERAÇÃO" : "ORDEM DE SERVIÇO / ANÁLISE")}
+</div>
+
+
+<h2>Identificação do QDC</h2>
+
+<table>
+
+<tr>
+<th>Código</th>
+<td>${esc(local.codigo || "-")}</td>
+</tr>
+
+<tr>
+<th>Nome</th>
+<td>${esc(local.nome || "-")}</td>
+</tr>
+
+<tr>
+<th>Tensão nominal</th>
+<td>${esc(local.tensao || "-")}</td>
+</tr>
+
+<tr>
+<th>Sistema</th>
+<td>${esc(local.sistema || "-")}</td>
+</tr>
+
+<tr>
+<th>Localização</th>
+<td>${esc(local.localizacao || "-")}</td>
+</tr>
+
+<tr>
+<th>Origem</th>
+<td>${esc(local.origem || "-")}</td>
+</tr>
+
+</table>
+
+
+<h2>O.S. / Análise</h2>
+
+<table>
+
+<tr>
+<th>Número</th>
+<td>${esc(os.numero || "-")}</td>
+</tr>
+
+<tr>
+<th>Data</th>
+<td>${formatarData(os.data)}</td>
+</tr>
+
+<tr>
+<th>Hora</th>
+<td>${esc(os.hora || "-")}</td>
+</tr>
+
+<tr>
+<th>Responsável</th>
+<td>${esc(os.responsavel || "-")}</td>
+</tr>
+
+<tr>
+<th>Tipo</th>
+<td>${esc(os.tipo || "-")}</td>
+</tr>
+
+<tr>
+<th>Disjuntor geral</th>
+<td>${esc(os.disjuntor || "-")}</td>
+</tr>
+
+<tr>
+<th>Frequência</th>
+<td>${esc(os.frequencia || "-")}</td>
+</tr>
+
+<tr>
+<th>Temperatura</th>
+<td>
+${
+    os.temperatura !== "" &&
+    os.temperatura !== null &&
+    os.temperatura !== undefined
+    ?
+    esc(os.temperatura) + " °C"
+    :
+    "-"
+}
+</td>
+</tr>
+
+<tr>
+<th>Situação</th>
+<td>${esc(os.situacao || "-")}</td>
+</tr>
+
+</table>
+
+
+<h2>Medições de tensão</h2>
+
+<table>
+
+<tr>
+<th>AB</th>
+<th>BC</th>
+<th>CA</th>
+<th>Média</th>
+<th>Maior desvio</th>
+<th>Desbalanceamento</th>
+</tr>
+
+<tr>
+
+<td>
+${os.tensoes && os.tensoes.AB !== null
+ ? os.tensoes.AB + " V"
+ : "-"
+}
+</td>
+
+<td>
+${os.tensoes && os.tensoes.BC !== null
+ ? os.tensoes.BC + " V"
+ : "-"
+}
+</td>
+
+<td>
+${os.tensoes && os.tensoes.CA !== null
+ ? os.tensoes.CA + " V"
+ : "-"
+}
+</td>
+
+<td>
+${tensao ? tensao.media.toFixed(2) + " V" : "-"}
+</td>
+
+<td>
+${tensao ? tensao.maior.toFixed(2) + " V" : "-"}
+</td>
+
+<td>
+${tensao ? tensao.percentual.toFixed(2) + " %" : "-"}
+</td>
+
+</tr>
+
+</table>
+
+
+<h2>Medições de corrente</h2>
+
+<table>
+
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>Média</th>
+<th>Maior desvio</th>
+<th>Desbalanceamento</th>
+</tr>
+
+<tr>
+
+<td>
+${os.correntes && os.correntes.A !== null
+ ? os.correntes.A + " A"
+ : "-"
+}
+</td>
+
+<td>
+${os.correntes && os.correntes.B !== null
+ ? os.correntes.B + " A"
+ : "-"
+}
+</td>
+
+<td>
+${os.correntes && os.correntes.C !== null
+ ? os.correntes.C + " A"
+ : "-"
+}
+</td>
+
+<td>
+${corrente ? corrente.media.toFixed(2) + " A" : "-"}
+</td>
+
+<td>
+${corrente ? corrente.maior.toFixed(2) + " A" : "-"}
+</td>
+
+<td>
+${corrente ? corrente.percentual.toFixed(2) + " %" : "-"}
+</td>
+
+</tr>
+
+</table>
+
+
+<h2>Inspeção do QDC</h2>
+
+<table>
+
+<tr>
+<th>Item</th>
+<th>Resultado</th>
+</tr>
+
+<tr>
+<td>Disjuntor</td>
+<td>${marca(ins.disjuntor)}</td>
+</tr>
+
+<tr>
+<td>Barramentos</td>
+<td>${marca(ins.barramento)}</td>
+</tr>
+
+<tr>
+<td>Conexões</td>
+<td>${marca(ins.conexoes)}</td>
+</tr>
+
+<tr>
+<td>Aterramento</td>
+<td>${marca(ins.aterramento)}</td>
+</tr>
+
+<tr>
+<td>DR</td>
+<td>${marca(ins.DR)}</td>
+</tr>
+
+<tr>
+<td>DPS</td>
+<td>${marca(ins.DPS)}</td>
+</tr>
+
+<tr>
+<td>Identificação</td>
+<td>${marca(ins.identificacao)}</td>
+</tr>
+
+<tr>
+<td>Limpeza / organização</td>
+<td>${marca(ins.limpeza)}</td>
+</tr>
+
+<tr>
+<td>Aquecimento / pontos quentes</td>
+<td>${marca(ins.aquecimento)}</td>
+</tr>
+
+</table>
+
+
+<h2>Observações / Serviço executado</h2>
+
+<div class="caixa">
+
+${nl2br(esc(os.observacoes || "-"))}
+
+</div>
+
+
+<h2>Controle</h2>
+
+<table>
+
+<tr>
+<th>Status</th>
+<td>
+${
+    emAlteracao
+    ?
+    "Dados atuais do formulário / alteração"
+    :
+    "O.S. salva"
+}
+</td>
+</tr>
+
+<tr>
+<th>Data/hora da impressão</th>
+<td>
+${formatarDataHora(new Date().toISOString())}
+</td>
+</tr>
+
+</table>
+
+
+<p style="margin-top:30px;text-align:center;font-size:11px;">
+Documento gerado pelo sistema Gestão QDC.
+</p>
+
+
+<script>
+
+window.onload=function(){
+
+    setTimeout(function(){
+
+        window.print();
+
+    },300);
+
+};
+
+<\/script>
+
+</body>
+
+</html>
+
+`;
+
+}
+
+
+/* =========================================================
    VISUALIZAR O.S.
-============================================================ */
+========================================================= */
 
 function visualizarOS(id){
 
-    const o =
-        ordens.find(x => x.id === id);
+    const os =
+        ordens.find(
+            x => x.id === id
+        );
 
-    if(!o) return;
+    if(!os) return;
 
-    const local =
-        locais.find(x => x.id === o.localId);
+    abrirJanelaImpressao(
+        gerarHTMLOS(
+            os,
+            false
+        ),
+        false
+    );
 
-    const texto = `
+}
 
-        <div class="card">
 
-            <h2>
-                ${esc(o.numeroOS)}
-            </h2>
+/* =========================================================
+   JANELA DE IMPRESSÃO
+========================================================= */
 
-            <p>
-                <b>Local:</b>
-                ${esc(local?.codigo || o.localCadastro?.codigo || "-")}
-                —
-                ${esc(local?.nome || o.localCadastro?.nome || "-")}
-            </p>
-
-            <p>
-                <b>Data:</b>
-                ${formatarData(o.data)}
-                ${o.hora ? " — "+esc(o.hora) : ""}
-            </p>
-
-            <p>
-                <b>Responsável:</b>
-                ${esc(o.responsavel || "-")}
-            </p>
-
-            <p>
-                <b>Tipo:</b>
-                ${esc(o.tipo || "-")}
-            </p>
-
-            <hr>
-
-            <h3>Medições</h3>
-
-            <table>
-
-                <tr>
-                    <th>Medição</th>
-                    <th>Valor</th>
-                </tr>
-
-                <tr>
-                    <td>AB</td>
-                    <td>${valorTexto(o.tensao?.AB,"V")}</td>
-                </tr>
-
-                <tr>
-                    <td>BC</td>
-                    <td>${valorTexto(o.tensao?.BC,"V")}</td>
-                </tr>
-
-                <tr>
-                    <td>CA</td>
-                    <td>${valorTexto(o.tensao?.CA,"V")}</td>
-                </tr>
-
-                <tr>
-                    <td>Tensão média</td>
-                    <td>${valorTexto(o.tensao?.media,"V")}</td>
-                </tr>
-
-                <tr>
-                    <td>Desbalanceamento tensão</td>
-                    <td>${valorTexto(o.tensao?.desbalanceamento,"%")}</td>
-                </tr>
-
-                <tr>
-                    <td>Corrente A</td>
-                    <td>${valorTexto(o.corrente?.A,"A")}</td>
-                </tr>
-
-                <tr>
-                    <td>Corrente B</td>
-                    <td>${valorTexto(o.corrente?.B,"A")}</td>
-                </tr>
-
-                <tr>
-                    <td>Corrente C</td>
-                    <td>${valorTexto(o.corrente?.C,"A")}</td>
-                </tr>
-
-                <tr>
-                    <td>Corrente média</td>
-                    <td>${valorTexto(o.corrente?.media,"A")}</td>
-                </tr>
-
-                <tr>
-                    <td>Desbalanceamento corrente</td>
-                    <td>${valorTexto(o.corrente?.desbalanceamento,"%")}</td>
-                </tr>
-
-            </table>
-
-            <h3>Inspeção</h3>
-
-            <p>
-                Disjuntor: ${check(o.inspecao?.disjuntor)}
-                |
-                Barramento: ${check(o.inspecao?.barramento)}
-                |
-                Conexões: ${check(o.inspecao?.conexoes)}
-            </p>
-
-            <p>
-                Aterramento: ${check(o.inspecao?.aterramento)}
-                |
-                DR: ${check(o.inspecao?.DR)}
-                |
-                DPS: ${check(o.inspecao?.DPS)}
-            </p>
-
-            <p>
-                Identificação: ${check(o.inspecao?.identificacao)}
-                |
-                Limpeza: ${check(o.inspecao?.limpeza)}
-                |
-                Aquecimento: ${check(o.inspecao?.aquecimento)}
-            </p>
-
-            <h3>Observações</h3>
-
-            <p>
-                ${nl2br(o.observacoes || "Nenhuma observação.")}
-            </p>
-
-        </div>
-    `;
-
+function abrirJanelaImpressao(
+    html,
+    imprimir = true
+){
 
     const janela =
         window.open(
             "",
             "_blank",
-            "width=900,height=700"
+            "width=1000,height=800"
         );
 
     if(!janela){
 
         alert(
-            "O navegador bloqueou a janela de visualização. " +
+            "O navegador bloqueou a janela de impressão. " +
             "Permita pop-ups para este arquivo."
         );
 
         return;
+
     }
 
-    janela.document.write(`
+    janela.document.open();
 
-        <!DOCTYPE html>
-
-        <html lang="pt-BR">
-
-        <head>
-
-            <meta charset="UTF-8">
-
-            <title>${esc(o.numeroOS)}</title>
-
-            <style>
-
-                body{
-                    font-family:Arial;
-                    padding:20px;
-                    color:#222;
-                }
-
-                .card{
-                    border:1px solid #ddd;
-                    padding:20px;
-                    border-radius:10px;
-                }
-
-                table{
-                    width:100%;
-                    border-collapse:collapse;
-                }
-
-                th,td{
-                    border:1px solid #ccc;
-                    padding:8px;
-                }
-
-                th{
-                    background:#eee;
-                }
-
-                @media print{
-                    button{
-                        display:none;
-                    }
-                }
-
-            </style>
-
-        </head>
-
-        <body>
-
-            ${texto}
-
-            <button onclick="window.print()">
-                Imprimir
-            </button>
-
-        </body>
-
-        </html>
-
-    `);
+    janela.document.write(html);
 
     janela.document.close();
 
 }
 
 
-/* ============================================================
+/* =========================================================
    COMPARAÇÃO
-============================================================ */
+========================================================= */
 
 function atualizarSelectComparacao(){
 
@@ -2676,30 +4169,51 @@ function atualizarSelectComparacao(){
     const s2 =
         document.getElementById("comparar2");
 
-    if(!s1 || !s2) return;
+    if(!localSelecionado){
+
+        s1.innerHTML =
+            '<option value="">Selecione</option>';
+
+        s2.innerHTML =
+            '<option value="">Selecione</option>';
+
+        return;
+
+    }
 
     const lista =
         ordens
-        .filter(x => x.localId === localSelecionado)
+        .filter(
+            x =>
+            x.localId === localSelecionado
+        )
         .sort(
-            (a,b) =>
-            new Date(b.data) -
-            new Date(a.data)
+            (a,b)=>
+            String(a.data || "")
+            .localeCompare(
+                String(b.data || "")
+            )
         );
 
     const options =
-        `<option value="">Selecione...</option>` +
-        lista.map(o => `
-
-            <option value="${o.id}">
-                ${esc(o.numeroOS)}
-                — ${formatarData(o.data)}
+        '<option value="">Selecione</option>' +
+        lista
+        .map(
+            os =>
+            `
+            <option value="${escAttr(os.id)}">
+                ${esc(os.numero || "-")}
+                -
+                ${formatarData(os.data)}
+                -
+                ${esc(os.tipo || "")}
             </option>
+            `
+        )
+        .join("");
 
-        `).join("");
-
-    s1.innerHTML=options;
-    s2.innerHTML=options;
+    s1.innerHTML = options;
+    s2.innerHTML = options;
 
 }
 
@@ -2707,10 +4221,14 @@ function atualizarSelectComparacao(){
 function compararAnalises(){
 
     const id1 =
-        document.getElementById("comparar1").value;
+        document
+        .getElementById("comparar1")
+        .value;
 
     const id2 =
-        document.getElementById("comparar2").value;
+        document
+        .getElementById("comparar2")
+        .value;
 
     if(!id1 || !id2){
 
@@ -2719,6 +4237,7 @@ function compararAnalises(){
         );
 
         return;
+
     }
 
     if(id1 === id2){
@@ -2728,124 +4247,178 @@ function compararAnalises(){
         );
 
         return;
+
     }
 
     const a =
-        ordens.find(x => x.id === id1);
+        ordens.find(
+            x => x.id === id1
+        );
 
     const b =
-        ordens.find(x => x.id === id2);
+        ordens.find(
+            x => x.id === id2
+        );
 
     if(!a || !b) return;
 
+    const ta =
+        a.tensoes &&
+        a.tensoes.calculo
+        ?
+        a.tensoes.calculo
+        :
+        null;
 
-    function diferenca(v1,v2){
+    const tb =
+        b.tensoes &&
+        b.tensoes.calculo
+        ?
+        b.tensoes.calculo
+        :
+        null;
 
-        if(!num(v1) || !num(v2)){
-            return "-";
-        }
+    const ca =
+        a.correntes &&
+        a.correntes.calculo
+        ?
+        a.correntes.calculo
+        :
+        null;
 
-        const d =
-            v2-v1;
-
-        return (
-            d > 0 ? "+" : ""
-        ) +
-        d.toFixed(2);
-
-    }
+    const cb =
+        b.correntes &&
+        b.correntes.calculo
+        ?
+        b.correntes.calculo
+        :
+        null;
 
 
-    document.getElementById(
-        "resultadoComparacao"
-    ).innerHTML = `
+    const html = `
 
-        <div style="overflow-x:auto">
+    <div class="card"
+         style="margin-top:15px;">
 
-        <table>
+        <h3>
+            Comparação
+        </h3>
+
+        <table class="tabela">
 
             <tr>
 
                 <th>Parâmetro</th>
 
                 <th>
-                    ${esc(a.numeroOS)}
+                    ${esc(a.numero || "Análise 1")}
                     <br>
                     ${formatarData(a.data)}
                 </th>
 
                 <th>
-                    ${esc(b.numeroOS)}
+                    ${esc(b.numero || "Análise 2")}
                     <br>
                     ${formatarData(b.data)}
                 </th>
 
-                <th>Diferença</th>
+            </tr>
+
+
+            <tr>
+
+                <td>Tensão AB</td>
+
+                <td>
+                    ${valorTexto(
+                        a.tensoes &&
+                        a.tensoes.AB,
+                        " V"
+                    )}
+                </td>
+
+                <td>
+                    ${valorTexto(
+                        b.tensoes &&
+                        b.tensoes.AB,
+                        " V"
+                    )}
+                </td>
 
             </tr>
 
 
             <tr>
 
-                <td>AB</td>
+                <td>Tensão BC</td>
 
-                <td>${valorTexto(a.tensao?.AB,"V")}</td>
+                <td>
+                    ${valorTexto(
+                        a.tensoes &&
+                        a.tensoes.BC,
+                        " V"
+                    )}
+                </td>
 
-                <td>${valorTexto(b.tensao?.AB,"V")}</td>
-
-                <td>${diferenca(a.tensao?.AB,b.tensao?.AB)}</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>BC</td>
-
-                <td>${valorTexto(a.tensao?.BC,"V")}</td>
-
-                <td>${valorTexto(b.tensao?.BC,"V")}</td>
-
-                <td>${diferenca(a.tensao?.BC,b.tensao?.BC)}</td>
+                <td>
+                    ${valorTexto(
+                        b.tensoes &&
+                        b.tensoes.BC,
+                        " V"
+                    )}
+                </td>
 
             </tr>
 
 
             <tr>
 
-                <td>CA</td>
+                <td>Tensão CA</td>
 
-                <td>${valorTexto(a.tensao?.CA,"V")}</td>
+                <td>
+                    ${valorTexto(
+                        a.tensoes &&
+                        a.tensoes.CA,
+                        " V"
+                    )}
+                </td>
 
-                <td>${valorTexto(b.tensao?.CA,"V")}</td>
-
-                <td>${diferenca(a.tensao?.CA,b.tensao?.CA)}</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Tensão média</td>
-
-                <td>${valorTexto(a.tensao?.media,"V")}</td>
-
-                <td>${valorTexto(b.tensao?.media,"V")}</td>
-
-                <td>${diferenca(a.tensao?.media,b.tensao?.media)}</td>
+                <td>
+                    ${valorTexto(
+                        b.tensoes &&
+                        b.tensoes.CA,
+                        " V"
+                    )}
+                </td>
 
             </tr>
 
 
             <tr>
 
-                <td>Desbalanceamento tensão</td>
+                <td>
+                    Desbalanceamento de tensão
+                </td>
 
-                <td>${valorTexto(a.tensao?.desbalanceamento,"%")}</td>
+                <td>
+                    ${
+                        ta
+                        ?
+                        ta.percentual.toFixed(2)+" %"
+                        :
+                        "-"
+                    }
+                </td>
 
-                <td>${valorTexto(b.tensao?.desbalanceamento,"%")}</td>
-
-                <td>${diferenca(a.tensao?.desbalanceamento,b.tensao?.desbalanceamento)}</td>
+                <td>
+                    ${
+                        tb
+                        ?
+                        tb.percentual.toFixed(2)+" %"
+                        :
+                        "-"
+                    }
+                </td>
 
             </tr>
 
@@ -2854,11 +4427,21 @@ function compararAnalises(){
 
                 <td>Corrente A</td>
 
-                <td>${valorTexto(a.corrente?.A,"A")}</td>
+                <td>
+                    ${valorTexto(
+                        a.correntes &&
+                        a.correntes.A,
+                        " A"
+                    )}
+                </td>
 
-                <td>${valorTexto(b.corrente?.A,"A")}</td>
-
-                <td>${diferenca(a.corrente?.A,b.corrente?.A)}</td>
+                <td>
+                    ${valorTexto(
+                        b.correntes &&
+                        b.correntes.A,
+                        " A"
+                    )}
+                </td>
 
             </tr>
 
@@ -2867,11 +4450,21 @@ function compararAnalises(){
 
                 <td>Corrente B</td>
 
-                <td>${valorTexto(a.corrente?.B,"A")}</td>
+                <td>
+                    ${valorTexto(
+                        a.correntes &&
+                        a.correntes.B,
+                        " A"
+                    )}
+                </td>
 
-                <td>${valorTexto(b.corrente?.B,"A")}</td>
-
-                <td>${diferenca(a.corrente?.B,b.corrente?.B)}</td>
+                <td>
+                    ${valorTexto(
+                        b.correntes &&
+                        b.correntes.B,
+                        " A"
+                    )}
+                </td>
 
             </tr>
 
@@ -2880,50 +4473,50 @@ function compararAnalises(){
 
                 <td>Corrente C</td>
 
-                <td>${valorTexto(a.corrente?.C,"A")}</td>
+                <td>
+                    ${valorTexto(
+                        a.correntes &&
+                        a.correntes.C,
+                        " A"
+                    )}
+                </td>
 
-                <td>${valorTexto(b.corrente?.C,"A")}</td>
-
-                <td>${diferenca(a.corrente?.C,b.corrente?.C)}</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Corrente média</td>
-
-                <td>${valorTexto(a.corrente?.media,"A")}</td>
-
-                <td>${valorTexto(b.corrente?.media,"A")}</td>
-
-                <td>${diferenca(a.corrente?.media,b.corrente?.media)}</td>
+                <td>
+                    ${valorTexto(
+                        b.correntes &&
+                        b.correntes.C,
+                        " A"
+                    )}
+                </td>
 
             </tr>
 
 
             <tr>
 
-                <td>Desbalanceamento corrente</td>
+                <td>
+                    Desbalanceamento de corrente
+                </td>
 
-                <td>${valorTexto(a.corrente?.desbalanceamento,"%")}</td>
+                <td>
+                    ${
+                        ca
+                        ?
+                        ca.percentual.toFixed(2)+" %"
+                        :
+                        "-"
+                    }
+                </td>
 
-                <td>${valorTexto(b.corrente?.desbalanceamento,"%")}</td>
-
-                <td>${diferenca(a.corrente?.desbalanceamento,b.corrente?.desbalanceamento)}</td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>Temperatura</td>
-
-                <td>${valorTexto(a.temperatura,"°C")}</td>
-
-                <td>${valorTexto(b.temperatura,"°C")}</td>
-
-                <td>${diferenca(a.temperatura,b.temperatura)}</td>
+                <td>
+                    ${
+                        cb
+                        ?
+                        cb.percentual.toFixed(2)+" %"
+                        :
+                        "-"
+                    }
+                </td>
 
             </tr>
 
@@ -2932,469 +4525,672 @@ function compararAnalises(){
 
                 <td>Situação</td>
 
-                <td>${esc(a.situacao || "-")}</td>
+                <td>
+                    ${esc(a.situacao || "-")}
+                </td>
 
-                <td>${esc(b.situacao || "-")}</td>
-
-                <td>-</td>
+                <td>
+                    ${esc(b.situacao || "-")}
+                </td>
 
             </tr>
 
         </table>
 
-        </div>
 
+        <div class="botoes">
 
-        <div class="botoes no-print">
-
-            <button
-                class="btn"
-                onclick="imprimirComparacao()">
-                🖨 Imprimir comparação
+            <button class="btn btn-preto"
+                    onclick="imprimirComparacao()">
+                🖨️ Imprimir Comparação
             </button>
 
         </div>
+
+    </div>
+
     `;
 
-}
 
+    document
+        .getElementById("resultadoComparacao")
+        .innerHTML = html;
 
-/* ============================================================
-   LIMPAR COMPARAÇÃO
-============================================================ */
-
-function limparComparacao(){
-
-    document.getElementById(
-        "resultadoComparacao"
-    ).innerHTML="";
-
-    document.getElementById(
-        "comparar1"
-    ).value="";
-
-    document.getElementById(
-        "comparar2"
-    ).value="";
-
-}
-
-
-/* ============================================================
-   IMPRESSÃO
-============================================================ */
-
-function imprimirOS(id){
-
-    visualizarOS(id);
 }
 
 
 function imprimirComparacao(){
 
-    const conteudo =
-        document.getElementById(
-            "resultadoComparacao"
-        ).innerHTML;
+    const id1 =
+        document
+        .getElementById("comparar1")
+        .value;
 
-    if(!conteudo){
+    const id2 =
+        document
+        .getElementById("comparar2")
+        .value;
+
+    if(!id1 || !id2){
 
         alert(
-            "Faça uma comparação primeiro."
+            "Selecione as duas análises."
         );
 
         return;
+
     }
 
-    const janela =
-        window.open(
-            "",
-            "_blank",
-            "width=1000,height=700"
+    const a =
+        ordens.find(
+            x => x.id === id1
         );
 
-    if(!janela){
-
-        alert(
-            "Permita pop-ups para imprimir."
+    const b =
+        ordens.find(
+            x => x.id === id2
         );
 
-        return;
-    }
-
-    janela.document.write(`
-
-        <!DOCTYPE html>
-
-        <html lang="pt-BR">
-
-        <head>
-
-            <meta charset="UTF-8">
-
-            <title>Comparação de análises</title>
-
-            <style>
-
-                body{
-                    font-family:Arial;
-                    padding:20px;
-                }
-
-                table{
-                    width:100%;
-                    border-collapse:collapse;
-                }
-
-                th,td{
-                    border:1px solid #aaa;
-                    padding:8px;
-                }
-
-                th{
-                    background:#eee;
-                }
-
-                button{
-                    padding:10px;
-                    margin-top:15px;
-                }
-
-            </style>
-
-        </head>
-
-        <body>
-
-            <h2>
-                Comparação de análises — QDC
-            </h2>
-
-            ${conteudo}
-
-            <button onclick="window.print()">
-                Imprimir
-            </button>
-
-        </body>
-
-        </html>
-
-    `);
-
-    janela.document.close();
-
-}
+    if(!a || !b) return;
 
 
-/* ============================================================
-   IMPRESSÃO DO LOCAL
-============================================================ */
+    const ta =
+        a.tensoes &&
+        a.tensoes.calculo
+        ?
+        a.tensoes.calculo
+        :
+        null;
 
-function imprimirLocal(){
+    const tb =
+        b.tensoes &&
+        b.tensoes.calculo
+        ?
+        b.tensoes.calculo
+        :
+        null;
+
+    const ca =
+        a.correntes &&
+        a.correntes.calculo
+        ?
+        a.correntes.calculo
+        :
+        null;
+
+    const cb =
+        b.correntes &&
+        b.correntes.calculo
+        ?
+        b.correntes.calculo
+        :
+        null;
+
 
     const local =
-        locais.find(x => x.id === localSelecionado);
+        locais.find(
+            x =>
+            x.id === localSelecionado
+        ) || {};
 
-    if(!local) return;
 
-    const lista =
-        ordens.filter(
-            x => x.localId === localSelecionado
-        );
+    const html = `
 
-    const janela =
-        window.open(
-            "",
-            "_blank",
-            "width=1000,height=700"
-        );
+<!doctype html>
 
-    if(!janela){
+<html lang="pt-BR">
 
-        alert(
-            "Permita pop-ups para imprimir."
-        );
+<head>
 
-        return;
+<meta charset="UTF-8">
+
+<title>Comparação de Análises</title>
+
+<style>
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    margin:20px;
+    color:#111;
+}
+
+h1{
+    text-align:center;
+}
+
+h2{
+    border-bottom:2px solid #333;
+    padding-bottom:5px;
+    margin-top:25px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+
+th,td{
+    border:1px solid #999;
+    padding:8px;
+}
+
+th{
+    background:#eee;
+    text-align:left;
+}
+
+@media print{
+    body{
+        margin:12mm;
     }
+}
 
-    janela.document.write(`
+</style>
 
-        <!DOCTYPE html>
+</head>
 
-        <html lang="pt-BR">
+<body>
 
-        <head>
+<h1>GESTÃO QDC</h1>
 
-            <meta charset="UTF-8">
+<h2>Comparação de análises</h2>
 
-            <title>${esc(local.codigo)}</title>
+<table>
 
-            <style>
+<tr>
+<th>QDC</th>
+<td>${esc(local.codigo || "-")}</td>
+</tr>
 
-                body{
-                    font-family:Arial;
-                    padding:20px;
-                }
+<tr>
+<th>Nome</th>
+<td>${esc(local.nome || "-")}</td>
+</tr>
 
-                table{
-                    width:100%;
-                    border-collapse:collapse;
-                }
+</table>
 
-                th,td{
-                    border:1px solid #aaa;
-                    padding:8px;
-                }
 
-                th{
-                    background:#eee;
-                }
+<table>
 
-                button{
-                    padding:10px;
-                    margin-top:15px;
-                }
+<tr>
 
-            </style>
+<th>Parâmetro</th>
 
-        </head>
+<th>
+${esc(a.numero || "Análise 1")}
+<br>
+${formatarData(a.data)}
+</th>
 
-        <body>
+<th>
+${esc(b.numero || "Análise 2")}
+<br>
+${formatarData(b.data)}
+</th>
 
-            <h1>
-                ${esc(local.codigo)}
-                — ${esc(local.nome)}
-            </h1>
+</tr>
 
-            <p>
-                <b>Tensão:</b>
-                ${esc(local.tensao || "-")}
-            </p>
 
-            <p>
-                <b>Sistema:</b>
-                ${esc(local.sistema || "-")}
-            </p>
+<tr>
 
-            <p>
-                <b>Localização:</b>
-                ${esc(local.localizacao || "-")}
-            </p>
+<td>Tensão AB</td>
 
-            <p>
-                <b>Origem:</b>
-                ${esc(local.origem || "-")}
-            </p>
+<td>
+${valorTexto(
+    a.tensoes && a.tensoes.AB,
+    " V"
+)}
+</td>
 
-            <h2>
-                Histórico
-            </h2>
+<td>
+${valorTexto(
+    b.tensoes && b.tensoes.AB,
+    " V"
+)}
+</td>
 
-            <table>
+</tr>
 
-                <tr>
 
-                    <th>O.S.</th>
-                    <th>Data</th>
-                    <th>Responsável</th>
-                    <th>Tipo</th>
-                    <th>Situação</th>
+<tr>
 
-                </tr>
+<td>Tensão BC</td>
 
-                ${
-                    lista.map(o => `
+<td>
+${valorTexto(
+    a.tensoes && a.tensoes.BC,
+    " V"
+)}
+</td>
 
-                    <tr>
+<td>
+${valorTexto(
+    b.tensoes && b.tensoes.BC,
+    " V"
+)}
+</td>
 
-                        <td>${esc(o.numeroOS)}</td>
+</tr>
 
-                        <td>${formatarData(o.data)}</td>
 
-                        <td>${esc(o.responsavel || "-")}</td>
+<tr>
 
-                        <td>${esc(o.tipo || "-")}</td>
+<td>Tensão CA</td>
 
-                        <td>${esc(o.situacao || "-")}</td>
+<td>
+${valorTexto(
+    a.tensoes && a.tensoes.CA,
+    " V"
+)}
+</td>
 
-                    </tr>
+<td>
+${valorTexto(
+    b.tensoes && b.tensoes.CA,
+    " V"
+)}
+</td>
 
-                    `).join("")
-                }
+</tr>
 
-            </table>
 
-            <button onclick="window.print()">
-                Imprimir
-            </button>
+<tr>
 
-        </body>
+<td>
+Desbalanceamento de tensão
+</td>
 
-        </html>
+<td>
+${ta ? ta.percentual.toFixed(2)+" %" : "-"}
+</td>
 
-    `);
+<td>
+${tb ? tb.percentual.toFixed(2)+" %" : "-"}
+</td>
 
-    janela.document.close();
+</tr>
+
+
+<tr>
+
+<td>Corrente A</td>
+
+<td>
+${valorTexto(
+    a.correntes && a.correntes.A,
+    " A"
+)}
+</td>
+
+<td>
+${valorTexto(
+    b.correntes && b.correntes.A,
+    " A"
+)}
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Corrente B</td>
+
+<td>
+${valorTexto(
+    a.correntes && a.correntes.B,
+    " A"
+)}
+</td>
+
+<td>
+${valorTexto(
+    b.correntes && b.correntes.B,
+    " A"
+)}
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Corrente C</td>
+
+<td>
+${valorTexto(
+    a.correntes && a.correntes.C,
+    " A"
+)}
+</td>
+
+<td>
+${valorTexto(
+    b.correntes && b.correntes.C,
+    " A"
+)}
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Desbalanceamento de corrente
+</td>
+
+<td>
+${ca ? ca.percentual.toFixed(2)+" %" : "-"}
+</td>
+
+<td>
+${cb ? cb.percentual.toFixed(2)+" %" : "-"}
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Situação</td>
+
+<td>${esc(a.situacao || "-")}</td>
+
+<td>${esc(b.situacao || "-")}</td>
+
+</tr>
+
+</table>
+
+
+<h2>Observações</h2>
+
+<table>
+
+<tr>
+<td>
+<strong>${esc(a.numero || "Análise 1")}</strong>
+<br><br>
+${nl2br(esc(a.observacoes || "-"))}
+</td>
+
+<td>
+<strong>${esc(b.numero || "Análise 2")}</strong>
+<br><br>
+${nl2br(esc(b.observacoes || "-"))}
+</td>
+</tr>
+
+</table>
+
+
+<p style="text-align:center;font-size:11px;margin-top:30px;">
+Impressão realizada em ${formatarDataHora(new Date().toISOString())}.
+</p>
+
+
+<script>
+
+window.onload=function(){
+
+    setTimeout(function(){
+
+        window.print();
+
+    },300);
+
+};
+
+<\/script>
+
+</body>
+</html>
+
+`;
+
+    abrirJanelaImpressao(html);
 
 }
 
 
-/* ============================================================
-   HISTÓRICO — ROLAGEM
-============================================================ */
-
-function irHistorico(){
-
-    document
-        .getElementById("historico")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-}
-
-
-/* ============================================================
-   SENHA DE SEGURANÇA
-============================================================ */
-
-function confirmarSenha(){
-
-    const senha =
-        prompt(
-            "Digite a senha para confirmar:"
-        );
-
-    if(senha === null){
-        return false;
-    }
-
-    if(senha !== "1234"){
-
-        alert("Senha incorreta.");
-
-        return false;
-    }
-
-    return true;
-
-}
-
-
-/* ============================================================
-   FUNÇÕES AUXILIARES
-============================================================ */
-
-function num(v){
-
-    return typeof v === "number" &&
-           Number.isFinite(v);
-
-}
-
-
-function valorInput(v){
-
-    return num(v)
-        ? v
-        : "";
-}
-
-
-function valorTexto(v,unidade){
-
-    if(!num(v)){
-        return "-";
-    }
-
-    return v.toFixed(2)+" "+unidade;
-
-}
-
+/* =========================================================
+   FUNÇÕES DE IMPRESSÃO / FORMATAÇÃO
+========================================================= */
 
 function formatarData(data){
 
-    if(!data){
-        return "-";
-    }
+    if(!data) return "-";
 
     const partes =
-        data.split("-");
+        String(data).split("-");
 
-    if(partes.length !== 3){
-        return data;
+    if(partes.length === 3){
+
+        return (
+            partes[2] +
+            "/" +
+            partes[1] +
+            "/" +
+            partes[0]
+        );
+
     }
 
-    return partes[2]+"/"+
-           partes[1]+"/"+
-           partes[0];
+    return data;
 
 }
 
 
-function check(v){
+function formatarDataHora(data){
 
-    return v
-        ? "OK"
-        : "Não informado";
+    if(!data) return "-";
+
+    try{
+
+        const d =
+            new Date(data);
+
+        if(Number.isNaN(d.getTime())){
+
+            return "-";
+
+        }
+
+        return (
+            String(
+                d.getDate()
+            ).padStart(2,"0")
+            +
+            "/"
+            +
+            String(
+                d.getMonth()+1
+            ).padStart(2,"0")
+            +
+            "/"
+            +
+            d.getFullYear()
+            +
+            " "
+            +
+            String(
+                d.getHours()
+            ).padStart(2,"0")
+            +
+            ":"
+            +
+            String(
+                d.getMinutes()
+            ).padStart(2,"0")
+        );
+
+    }catch(e){
+
+        return "-";
+
+    }
+
+}
+
+
+function valorTexto(
+    valor,
+    unidade=""
+){
+
+    if(
+        valor === null ||
+        valor === undefined ||
+        valor === "" ||
+        !Number.isFinite(
+            Number(valor)
+        )
+    ){
+
+        return "-";
+
+    }
+
+    return (
+        Number(valor).toFixed(2) +
+        unidade
+    );
+
+}
+
+
+function num(v){
+
+    const n =
+        Number(v);
+
+    return Number.isFinite(n);
 
 }
 
 
 function nl2br(texto){
 
-    return esc(texto)
-        .replace(/\n/g,"<br>");
+    return String(texto)
+        .replace(
+            /\n/g,
+            "<br>"
+        );
 
 }
 
 
 function esc(texto){
 
-    if(texto === null ||
-       texto === undefined){
-        return "";
-    }
-
-    return String(texto)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    return String(
+        texto === null ||
+        texto === undefined
+        ?
+        ""
+        :
+        texto
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
 
-/* ============================================================
-   RESTAURAR SESSÃO
-============================================================ */
+function escAttr(texto){
+
+    return esc(texto);
+
+}
+
+
+/* =========================================================
+   TECLADO
+========================================================= */
+
+document
+    .getElementById("loginSenha")
+    .addEventListener(
+        "keydown",
+        function(e){
+
+            if(e.key === "Enter"){
+
+                entrar();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   RESTAURAÇÃO DA SESSÃO
+========================================================= */
 
 (function(){
 
-    const sessao =
-        sessionStorage.getItem(
-            "QDC_SESSAO_V5"
-        );
+    carregarDados();
 
-    if(sessao){
+    try{
+
+        const sessao =
+            sessionStorage.getItem(
+                CHAVE_SESSAO
+            );
+
+        if(sessao){
+
+            const dados =
+                JSON.parse(sessao);
+
+            if(
+                dados &&
+                dados.usuario &&
+                dados.perfil
+            ){
+
+                usuario = dados;
+
+                iniciarSistema();
+
+            }
+
+        }
+
+    }catch(e){
+
+        console.error(
+            "Erro ao restaurar sessão:",
+            e
+        );
 
         try{
 
-            usuario =
-                JSON.parse(sessao);
-
-            iniciarSistema();
-
-        }catch(e){
-
             sessionStorage.removeItem(
-                "QDC_SESSAO_V5"
+                CHAVE_SESSAO
             );
 
-        }
+        }catch(x){}
 
     }
 
